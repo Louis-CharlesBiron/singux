@@ -15,8 +15,8 @@ public class AppGraphicalController {
     @FXML
     private Label pt;
 
-   // private Mot mot = new Mot("mamburg");
-   // private Joueur singe = new Joueur();
+    // private Mot mot = new Mot("mamburg");
+    // private Joueur singe = new Joueur();
 
 
     @FXML
@@ -28,9 +28,9 @@ public class AppGraphicalController {
     @FXML
     private void initialize() {
 
-        test.setOnKeyPressed( event -> {
+        test.setOnKeyPressed(event -> {
 
-        } );
+        });
 
         test.textProperty().addListener((o, oldV, newV) -> {
 
@@ -38,5 +38,21 @@ public class AppGraphicalController {
         });
 
 
+    }
+
+    private String getAcheteur() {
+        return "Bobby Joe!";
+    }
+
+    private int getMontant() {
+        return 10001000;
+    }
+
+    private void getModePaiement() {
+
+    }
+
+    private double getTaxes() {
+        return 10001000;
     }
 }
