@@ -6,9 +6,9 @@ public class Taxes {
     private boolean isEnv;
 
     public Taxes(boolean isTPS, boolean isTVQ, boolean isEnv) {
-        this.isTPS = isTPS;
-        this.isTVQ = isTVQ;
-        this.isEnv = isEnv;
+        this.isTPS = isTPS; //5%
+        this.isTVQ = isTVQ; //9,975%
+        this.isEnv = isEnv; // ouai
     }
 
     public double getTotalAvecTaxes(double totalInit) {
