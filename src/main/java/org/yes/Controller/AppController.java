@@ -14,7 +14,7 @@ public class AppController extends Application {
         stage.setAlwaysOnTop(true);
         stage.setOpacity(0.95);
         stage.setFullScreenExitHint("singe LOLOL");
-        stage.setScene(new Scene(new FXMLLoader(getClass().getResource("/View/index.fxml")).load(), 500, 400));
+        stage.setScene(new Scene(new FXMLLoader(getClass().getResource("/View/index.fxml")).load(), 5000, 400));
         stage.show();
     }
 
