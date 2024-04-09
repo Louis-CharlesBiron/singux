@@ -12,7 +12,7 @@ public class AppController extends Application {
     public void start(Stage stage) throws Exception {
         stage.setTitle("DIE");
         stage.setAlwaysOnTop(true);
-        stage.setOpacity(0.95);
+        stage.setOpacity(0.3);
         stage.setFullScreenExitHint("singe LOLOL");
         stage.setScene(new Scene(new FXMLLoader(getClass().getResource("/View/index.fxml")).load(), 5000, 400));
         stage.show();
