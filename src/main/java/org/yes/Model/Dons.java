@@ -14,4 +14,7 @@ public class Dons {
         return this.total+=totalNoob;
     }
 
+    public double getTotal() {
+        return total;
+    }
 }

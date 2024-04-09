@@ -14,4 +14,16 @@ public class Taxes {
     public double getTotalAvecTaxes(double totalInit) {
         return 1; // FUCK YOU
     }
+
+    public boolean isTPS() {
+        return isTPS;
+    }
+
+    public boolean isTVQ() {
+        return isTVQ;
+    }
+
+    public boolean isEnv() {
+        return isEnv;
+    }
 }
