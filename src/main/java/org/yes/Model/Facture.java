@@ -5,9 +5,9 @@ public class Facture {
     private double totalSansTaxes;
     private Enum modePaiement; // TODO
 
-    private Taxes taxes;
+    private double taxes;
 
-    public Facture(String nom, double totalSansTaxes, Enum modePaiement, Taxes taxes) {
+    public Facture(String nom, double totalSansTaxes, Enum modePaiement, double taxes) {
         this.nom = nom;
         this.totalSansTaxes = totalSansTaxes;
         this.modePaiement = modePaiement;
@@ -26,7 +26,7 @@ public class Facture {
         return modePaiement;
     }
 
-    public Taxes getTaxes() {
+    public double getTaxes() {
         return taxes;
     }
 }
