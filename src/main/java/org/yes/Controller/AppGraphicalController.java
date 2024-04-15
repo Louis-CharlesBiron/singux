@@ -29,7 +29,7 @@ public class AppGraphicalController {
      * va chercher le mode de paiement coché par l'utilisateur
      */
     private ModePaiements getModePaiement() {
-
+        return ModePaiements.DEBIT;
     }
 
     /**
