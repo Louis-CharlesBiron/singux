@@ -1,6 +1,6 @@
 package org.yes.Model;
 
-/** 
+/**
  * Représente une facture d'un client, peut être modifiée, accèdée et contient :
  * - le nom du client
  * - le total avant taxes (0.00$)
@@ -44,7 +44,7 @@ public class Facture {
         return totalSansTaxes;
     }
 
-    public Enum getModePaiement() {
+    public ModePaiements getModePaiement() {
         return modePaiement;
     }
 
