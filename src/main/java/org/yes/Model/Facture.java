@@ -13,7 +13,7 @@ public class Facture {
     private ModePaiements modePaiement;
     private double montantTaxes;
 
-    public Facture(String nomClient, double totalSansTaxes, Enum modePaiement, double montantTaxes) {
+    public Facture(String nomClient, double totalSansTaxes, ModePaiements modePaiement, double montantTaxes) {
         this.nomClient = nomClient;
         this.totalSansTaxes = totalSansTaxes;
         this.modePaiement = modePaiement;
@@ -28,7 +28,7 @@ public class Facture {
         this.totalSansTaxes = totalSansTaxes;
     }
 
-    public void setModePaiement(Enum modePaiement) {
+    public void setModePaiement(ModePaiements modePaiement) {
         this.modePaiement = modePaiement;
     }
 
