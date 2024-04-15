@@ -1,20 +1,44 @@
 package org.yes.Model;
 
+/**
+ * @author Félix Blanchette
+ * @version 1
+ * @PhaseLune premier quartier
+ * @Éclairage 47%
+ * Classe Dons
+ * Gérer l'ajout des dons et contient le total des dons effectués
+ * @since 2024-04-15
+ */
 public class Dons {
-    private double total;
+
+    private double totalDons; // le total des dons effectués
+
 
     public Dons() {
-        this.total = 0;
-    }
-    public Dons(double total) {
-        this.total = total;
+        this.totalDons = 0;
     }
 
-    public double ajouterDons(double totalNoob) {
-        return this.total+=totalNoob;
+    /**
+     * Permet d'additionner un don au total de dons
+     *
+     * @param nouveauDon le don à ajouter au total
+     * @return le nouveau total de dons
+     */
+    public double ajouterDons(double nouveauDon) {
+        return this.totalDons += nouveauDon;
     }
 
-    public double getTotal() {
-        return total;
+    /**
+     * @param totalDons le montant des dons
+     */
+    private void setTotalDons(double totalDons) {
+        this.totalDons = totalDons;
+    }
+
+    /**
+     * @return le total des dons
+     */
+    public double getTotalDons() {
+        return totalDons;
     }
 }
