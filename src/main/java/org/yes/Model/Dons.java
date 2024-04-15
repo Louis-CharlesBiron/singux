@@ -21,10 +21,23 @@ public class Dons {
     /**
      * Permet d'additionner un don au total de dons
      *
-     * @param nouveauDon le don à ajouter au total
+     * @param montant le montant de la facture qui sert à calculer le montant du don
+     * @param modePaiements le mode de paiement qui sert à calculer le montant du don
      * @return le nouveau total de dons
      */
-    public double ajouterDons(double nouveauDon) {
+    public double ajouterDons(double montant, ModePaiements modePaiements) {
+        double nouveauDon;
+        double fraisMOdePaiement = 0;
+
+        if (modePaiements == ModePaiements.DEBIT){
+            fraisMOdePaiement = montant * 0.01;
+        }
+        else if (modePaiements == ModePaiements.CREDIT) {
+            fraisMOdePaiement = montant * 0.03;
+        }
+
+        nouveauDon = 0.02 * (montant - fraisMOdePaiement);
+
         return this.totalDons += nouveauDon;
     }
 
