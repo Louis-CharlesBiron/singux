@@ -52,7 +52,7 @@ class FactureTest {
         assertEquals(Double.parseDouble(montantValide), facture1.getTotalSansTaxes());
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     void setNomClient(){
 
         //Mock d'un input utilisateur
