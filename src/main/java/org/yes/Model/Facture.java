@@ -18,7 +18,7 @@ public class Facture {
 
     public Facture() {}
     public Facture(String nomClient, String totalSansTaxes, ModePaiements modePaiement, String montantTaxes) {
-        this.setnomClient(nomClient);
+        this.setNomClient(nomClient);
         this.setTotalSansTaxes(totalSansTaxes);
         this.setTaxes(montantTaxes);
         this.setModePaiement(modePaiement);
