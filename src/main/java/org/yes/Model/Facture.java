@@ -1,21 +1,43 @@
 package org.yes.Model;
 
+/** 
+ * Représente une facture d'un client, peut être modifiée, accèdée et contient :
+ * - le nom du client
+ * - le total avant taxes
+ * - le montant de taxes ajouté au total
+ * - le mode de paiement employé 
+ */
 public class Facture {
-    private String nom;
+    private String nomClient;
     private double totalSansTaxes;
-    private Enum modePaiement; // TODO
+    private Enum modePaiement;
+    private double montantTaxes;
 
-    private double taxes;
-
-    public Facture(String nom, double totalSansTaxes, Enum modePaiement, double taxes) {
-        this.nom = nom;
+    public Facture(String nomClient, double totalSansTaxes, Enum modePaiement, double montantTaxes) {
+        this.nomClient = nomClient;
         this.totalSansTaxes = totalSansTaxes;
         this.modePaiement = modePaiement;
-        this.taxes = taxes;
+        this.montantTaxes = montantTaxes;
     }
 
-    public String getNom() {
-        return nom;
+    public void setnomClient(String nomClient) {
+        this.nomClient = nomClient;
+    }
+
+    public void setTotalSansTaxes(double totalSansTaxes) {
+        this.totalSansTaxes = totalSansTaxes;
+    }
+
+    public void setModePaiement(Enum modePaiement) {
+        this.modePaiement = modePaiement;
+    }
+
+    public void setTaxes(double montantTaxes) {
+        this.montantTaxes = montantTaxes;
+    }
+
+    public String getnomClient() {
+        return nomClient;
     }
 
     public double getTotalSansTaxes() {
@@ -27,6 +49,6 @@ public class Facture {
     }
 
     public double getTaxes() {
-        return taxes;
+        return montantTaxes;
     }
 }
