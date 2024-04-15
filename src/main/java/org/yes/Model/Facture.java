@@ -3,14 +3,14 @@ package org.yes.Model;
 /** 
  * Représente une facture d'un client, peut être modifiée, accèdée et contient :
  * - le nom du client
- * - le total avant taxes
- * - le montant de taxes ajouté au total
- * - le mode de paiement employé 
+ * - le total avant taxes (0.00$)
+ * - le montant de taxes ajouté au total (0.00$)
+ * - le mode de paiement employé (argent|débit|crédit)
  */
 public class Facture {
     private String nomClient;
     private double totalSansTaxes;
-    private Enum modePaiement;
+    private ModePaiements modePaiement;
     private double montantTaxes;
 
     public Facture(String nomClient, double totalSansTaxes, Enum modePaiement, double montantTaxes) {
