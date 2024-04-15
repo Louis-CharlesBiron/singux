@@ -10,7 +10,7 @@ package org.yes.Model;
 public class Facture {
     private String nomClient;
     private double totalSansTaxes;
-    private Enum modePaiement;
+    private ModePaiements modePaiement;
     private double montantTaxes;
 
     public Facture(String nomClient, double totalSansTaxes, Enum modePaiement, double montantTaxes) {
