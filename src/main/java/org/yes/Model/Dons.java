@@ -1,7 +1,7 @@
 package org.yes.Model;
 
 public class Dons {
-    private double total = 0;
+    private double total;
 
     public Dons() {
         this.total = 0;
