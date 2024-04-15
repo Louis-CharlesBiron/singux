@@ -1,6 +1,8 @@
 package org.yes.Controller;
 
 
+import org.yes.Model.ModePaiements;
+
 /**
  * @Author Maek Lorman
  * Classe AppGraphicalController
@@ -26,7 +28,8 @@ public class AppGraphicalController {
     /**
      * va chercher le mode de paiement coché par l'utilisateur
      */
-    private void getModePaiement() {
+    private ModePaiements getModePaiement() {
+        return ModePaiements.DEBIT;
     }
 
     /**

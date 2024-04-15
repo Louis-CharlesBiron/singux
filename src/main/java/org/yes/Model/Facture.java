@@ -20,7 +20,8 @@ public class Facture {
         this.montantTaxes = montantTaxes;
     }
 
-    public void setnomClient(String nomClient) {
+    public void setNomClient(String nomClient) {
+
         this.nomClient = nomClient;
     }
 
