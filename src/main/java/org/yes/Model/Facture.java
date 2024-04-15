@@ -24,7 +24,8 @@ public class Facture {
         this.setModePaiement(modePaiement);
     }
 
-    public void setnomClient(String nomClient) {
+    public void setNomClient(String nomClient) {
+
         this.nomClient = nomClient;
     }
 
