@@ -36,11 +36,6 @@ public class AppGraphicalController {
 
     @FXML
     private void initialize() {
-
-
-
-
-
         // Création facture
         creer.setOnMouseClicked(event->{
             System.out.println(getNomAcheteur());
@@ -56,8 +51,6 @@ public class AppGraphicalController {
         annuler.setOnMouseClicked(event -> {
 
         });
-
-
     }
 
 
