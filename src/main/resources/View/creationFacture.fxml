@@ -60,7 +60,7 @@
                                 <Font size="19.0"/>
                             </font>
                         </Text>
-                        <RadioButton fx:id="radioArgent" layoutX="9.0" layoutY="104.0" mnemonicParsing="false"
+                        <RadioButton fx:id="argent" layoutX="9.0" layoutY="104.0" mnemonicParsing="false"
                                      text="Argent"
                                      textFill="#292929">
                             <font>
@@ -70,14 +70,14 @@
                                 <ToggleGroup fx:id="ModePaiement"/>
                             </toggleGroup>
                         </RadioButton>
-                        <RadioButton fx:id="radioDebit" layoutX="8.0" layoutY="150.0" mnemonicParsing="false"
+                        <RadioButton fx:id="debit" layoutX="8.0" layoutY="150.0" mnemonicParsing="false"
                                      text="Débit"
                                      textFill="#292929" toggleGroup="$ModePaiement">
                             <font>
                                 <Font size="16.0"/>
                             </font>
                         </RadioButton>
-                        <RadioButton fx:id="radioCradit" layoutX="8.0" layoutY="194.0" mnemonicParsing="false"
+                        <RadioButton fx:id="credit" layoutX="8.0" layoutY="194.0" mnemonicParsing="false"
                                      text="Crédit"
                                      textFill="#292929" toggleGroup="$ModePaiement">
                             <font>

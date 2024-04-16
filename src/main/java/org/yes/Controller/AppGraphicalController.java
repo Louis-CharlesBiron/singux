@@ -21,11 +21,11 @@ public class AppGraphicalController {
     @FXML
     private TextField montantTaxes;
     @FXML
-    private RadioButton radioDebit;
+    private RadioButton debit;
     @FXML
-    private RadioButton radioCredit;
+    private RadioButton credit;
     @FXML
-    private RadioButton radioArgent;
+    private RadioButton argent;
     @FXML
     private Button creer;
     @FXML
@@ -42,6 +42,9 @@ public class AppGraphicalController {
         // Création facture
         creer.setOnMouseClicked(event->{
             System.out.println(getNomAcheteur());
+            System.out.println(getMontantSansTaxes());
+            System.out.println(getMontantTaxes());
+            System.out.println(getModePaiement());
             System.out.println("CRÉER FACTURE FACOTREY LOLOLOLOLOLOLLOLOLOLOLOLOLLOLOLOLOLOLOLLOLOLOLOLOLOLLOLOLOLOLOLOLLOLOLOLOLOLOLLOLOLOLOLOLOLLOLOLOLOLOLOLLOLOLOLOLOLOLLOLOLOLOLOLOLLOLOLOLOLOLOLLOLOLOLOLOLOLLOLOLOLOLOLOLLOLOLOLOLOLOLLOLOLOLOLOLOLLOLOLOLOLOLOLLOLOLOLOLOLOLLOLOLOLOLOLOLLOLOLOLOLOLOLLOLOLOLOLOLOLLOLOLOLOLOLOLLOLOLOLOLOLOLLOLOLOLOLOLOLLOLOLOLOLOLOLLOLOLOLOLOLOLLOLOLOLOLOLOLLOLOLOLOLOLOLLOLOLOLOLOLOLLOLOLOLOLOLOLLOLOLOLOLOLOLLOLOLOLOLOLOLLOLOLOLOLOLOLLOLOLOLOLOLOLLOLOLOLOLOLOLLOLOLOLOLOLOLLOLOLOLOLOLOLLOLOLOLOLOLOLLOLOLOLOLOLOLLOLOLOLOLOLOLLOLOLOLOLOLOLLOLOLOLOLOLOLLOLOLOLOLOLOLLOLOLOLOLOLOLLOLOLOLOLOLOLLOLOLOLOLOLOLLOLOLOLOLOLOLLOLOLOLOLOLOLLOLOLOLOLOLOLLOLOLOLOLOLOLLOLOLOLOLOLOLLOLOLOLOLOLOLLOLOLOLOLOLOLLOLOLOLOLOLOLLOLOLOLOLOLOLLOLOLOLOLOLOLLOLOLOLOLOLOLLOLOLOLOLOLOLLOLOLOLOLOLOLLOLOLOLOLOLOLLOLOLOLOLOLOLLOLOLOLOLOLOLLOLOLOLOLOLOLLOLOLOLOLOLOLLOLOLOLOLOLOLLOLOLOLOLOLOLLOLOLOLOLOLOLLOLOLOLOLOLOLLOLOLOLOLOLOLLOLOLOLOLOLOLLOLOLOLOLOLOLLOLOLOLOLOLOLLOLOLOLOLOLOLLOLOLOLOLOLOLLOLOLOLOLOLOLLOLOLOLOLOLOLLOLOLOLOLOLOLLOLOLOLOLOLOLLOLOLOLOLOLOLLOLOLOLOLOLOLLOLOLOLOLOLOLLOLOLOLOLOLOLLOLOLOLOLOLOLLOLOLOLOLOLOLLOLOLOLOLOLOLLOLOLOLOLOLOLLOLOLOLOLOLOLLOLOLOLOLOLOLLOLOLOLOLOLOLLOLOLOLOLOLOLLOLOLOLOLOLOLLOLOLOLOLOLOLLOLOLOLOLOLOLLOLOLOLOLOLOLLOLOLOLOLOLOLLOLOLOLOLOLOLLOLOLOLOLOLOLLOLOLOLOLOLOLLOLOLOLOLOLOLLOLOLOLOLOLOLLOLOLOLOLOLOLLOLOLOLOLOLOLLOLOLOLOLOLOLLOLOLOLOLOLOLLOLOLOLOLOLOLLOLOLOLOLOLOLLOLOLOLOLOLOLLOLOLOLOLOLOLLOLOLOLOLOLOLLOLOLOLOLOLOLLOLOLOLOLOLOLLOLOLOLOLOLOLLOLOLOLOLOLOLLOLOLOLOLOLOL");
 
         });
@@ -65,24 +68,21 @@ public class AppGraphicalController {
     /**
      * @return -> le montant de l'achat sans les taxes et dons
      */
-    private int getMontant() {
-        return 10001000;
+    private String getMontantSansTaxes() {
+        return montantSansTaxe.textProperty().getValue();
     }
 
     /**
      * va chercher le mode de paiement coché par l'utilisateur
      */
-    private ModePaiements getModePaiement() {
-        if (radioArgent) ;
-        radioCredit;
-        radioDebit;
-        return radioArgent.getEffectiveNodeOrientation() ? ModePaiements.ARGENT : radioCredit.getChildrenUnmodifiable() ? ModePaiements.CREDIT : radioDebit.getViewOrder();
+    private String getModePaiement() {
+        return argent.isSelected() ? argent.getId() : credit.isSelected() ? credit.getId() : debit.isSelected() ? debit.getId() : "";
     }
 
     /**
      * @return -> la valeur des taxes appliquées
      */
-    private String getTaxes() {
-        return //////////////
+    private String getMontantTaxes() {
+        return montantTaxes.textProperty().getValue();
     }
 }
