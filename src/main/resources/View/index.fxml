@@ -56,7 +56,7 @@
                 <Label fx:id="test2" layoutX="166.0" layoutY="204.0" text="_ _ _ _ _ _ _ _  __ _ _ _ _ _ _ _ _ _ _ _ _  _ _ _ _ _ _ _ _ _ _ _" />
                 <Label fx:id="pt" layoutX="266.0" layoutY="304.0" text="pooints: 0" />
                 <Label layoutX="280.0" layoutY="37.0" text="Hey Guys!" />
-                  <Button fx:id="yoman" layoutX="526.0" layoutY="43.0" mnemonicParsing="false" onMouseClicked="#clickTest" text="Button" />
+                  <Button fx:id="yoman" layoutX="526.0" layoutY="43.0" mnemonicParsing="false" text="Button" />
             </children>
                <effect>
                   <MotionBlur angle="131.29" radius="0.0">

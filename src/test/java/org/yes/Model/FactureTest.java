@@ -44,7 +44,7 @@ class FactureTest {
 
     @ParameterizedTest
     @ValueSource(strings = {"10.00", "1000.00", ".99", "0.00"})
-    void etantDonneMontantSansTaxeValie_quandCréerOuModifierFacture_alorsErreur(String montantValide) {// ACTEUR
+    void etantDonneMontantSansTaxeValide_quandCréerOuModifierFacture_alorsBien(String montantValide) {// ACTEUR
         //ACTION
         facture1.setTotalSansTaxes(montantValide);
 
@@ -53,7 +53,7 @@ class FactureTest {
     }
 
     @Test
-    void setNomClient(){
+    void etantDonneNomClientValide_quandCréerOuModifierFacture_alorsBien(){
 
         //Mock d'un input utilisateur
         String nomCompletLegal = "Bob Léponge";
