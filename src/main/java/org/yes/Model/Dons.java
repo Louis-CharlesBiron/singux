@@ -27,16 +27,16 @@ public class Dons {
      */
     public double ajouterDons(double montant, ModePaiements modePaiements) {
         double nouveauDon;
-        double fraisMOdePaiement = 0;
+        double fraisModePaiement = 0;
 
         if (modePaiements == ModePaiements.DEBIT){
-            fraisMOdePaiement = montant * 0.01;
+            fraisModePaiement = montant * 0.01;
         }
         else if (modePaiements == ModePaiements.CREDIT) {
-            fraisMOdePaiement = montant * 0.03;
+            fraisModePaiement = montant * 0.03;
         }
 
-        nouveauDon = 0.02 * (montant - fraisMOdePaiement);
+        nouveauDon = 0.02 * (montant - fraisModePaiement);
 
         return this.totalDons += nouveauDon;
     }
