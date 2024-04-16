@@ -41,7 +41,7 @@
                 <TextField fx:id="montantSansTaxe" layoutX="278.0" layoutY="141.0" prefHeight="26.0" prefWidth="50.0"
                            promptText="0.00$"/>
                 <Label layoutX="252.0" layoutY="118.0" text="Montant sans taxes" textFill="#dbfbcb"/>
-                <TextField fx:id="montantTaxe" layoutX="278.0" layoutY="210.0" prefHeight="25.0" prefWidth="50.0"
+                <TextField fx:id="montantTaxes" layoutX="278.0" layoutY="210.0" prefHeight="25.0" prefWidth="50.0"
                            promptText="0.00$"/>
                 <Label layoutX="232.0" layoutY="174.0" prefHeight="36.0" prefWidth="142.0"
                        text="Montant totale avec taxes" textFill="#dbfbcb"/>
@@ -95,7 +95,7 @@
                                 <Font size="19.0"/>
                             </font>
                         </Text>
-                        <Text fx:id="montant-dons" layoutX="34.0" layoutY="157.0" strokeType="OUTSIDE" strokeWidth="0.0"
+                        <Text fx:id="montantDons" layoutX="34.0" layoutY="157.0" strokeType="OUTSIDE" strokeWidth="0.0"
                               text="Total : 0,00$">
                             <font>
                                 <Font size="19.0"/>
