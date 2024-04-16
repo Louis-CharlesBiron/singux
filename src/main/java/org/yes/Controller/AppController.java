@@ -25,9 +25,7 @@ public class AppController extends Application {
     public void start(Stage stage) throws Exception {
         stage.setTitle("Shiné");
         stage.setAlwaysOnTop(true);
-        stage.setOpacity(0.05);
-        stage.setFullScreenExitHint("U fooking Donkey");
-        stage.setScene(new Scene(new FXMLLoader(getClass().getResource("/View/index.fxml")).load(), 5000, 400));
+        stage.setScene(new Scene(new FXMLLoader(getClass().getResource("/View/creationFacture.fxml")).load()));
         stage.show();
     }
 
