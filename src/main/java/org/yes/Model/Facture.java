@@ -9,7 +9,7 @@ import java.util.regex.Pattern;
  * - le montant de taxes ajouté au total (0.00$)
  * - le mode de paiement employé (argent|débit|crédit)
  */
-public class Facture {
+public class Facture implements IFacture {
     private String nomClient;
     private double totalSansTaxes;
     private ModePaiements modePaiement;
@@ -17,7 +17,9 @@ public class Facture {
 
 
     public Facture() {}
-    public Facture(String nomClient, String totalSansTaxes, ModePaiements modePaiement, String montantTaxes) {
+
+    @Override
+    public void build(String nomClient, String totalSansTaxes, String modePaiement, String montantTaxes) {
         this.setNomClient(nomClient);
         this.setTotalSansTaxes(totalSansTaxes);
         this.setTaxes(montantTaxes);
@@ -34,8 +36,8 @@ public class Facture {
         else throw new IllegalArgumentException("Format: 'total sans taxes' invalide");
     }
 
-    public void setModePaiement(ModePaiements modePaiement) {
-        this.modePaiement = modePaiement;
+    public void setModePaiement(String modePaiement) {
+        this.modePaiement = ModePaiements.valueOf(modePaiement);
     }
 
     public void setTaxes(String montantTaxes) {
