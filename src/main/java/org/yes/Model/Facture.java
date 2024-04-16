@@ -16,7 +16,7 @@ public class Facture implements IFacture {
     private double montantTaxes;
 
 
-    public Facture() {}//
+    public Facture() {}
 
     @Override
     public void build(String nomClient, String totalSansTaxes, String modePaiement, String montantTaxes) {
