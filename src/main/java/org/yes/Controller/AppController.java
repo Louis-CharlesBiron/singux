@@ -12,12 +12,13 @@ le modèle graphique ainsi que les actions qui seront disponibles sur L'applicat
 public class AppController extends Application {
 
     /**
-     *   Cette méthode permet de créer le stage de l'application. Cela permet de bien construire, avec l'aide de
-     *   AppGraphicalController, le visuelle de l'applications et les variables nécessaire a celui-ci.
+     * Cette méthode permet de créer le stage de l'application. Cela permet de bien construire, avec l'aide de
+     * AppGraphicalController, le visuelle de l'applications et les variables nécessaire a celui-ci.
+     *
      * @param stage primaire de cette application, sur laquelle
-     *   La scène de l’application peut être définie.
-     *   Les applications peuvent créer d’autres stages, si nécessaire, mais elles ne seront pas des
-     *   stages primaires.
+     *              La scène de l’application peut être définie.
+     *              Les applications peuvent créer d’autres stages, si nécessaire, mais elles ne seront pas des
+     *              stages primaires.
      * @throws Exception
      */
     @Override
@@ -34,6 +35,7 @@ public class AppController extends Application {
      * Cette méthode permet le lancement du controller de l'application.
      * Elle permet un contrôle concrèt et éfficace de l'application et permet donc un
      * donctionnement sans accros.
+     *
      * @param args
      */
     public static void main(String[] args) {
