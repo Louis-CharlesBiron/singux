@@ -63,4 +63,14 @@ public class Facture {
     public static double verificationFormatArgent(String montant) {
         return Pattern.compile("^[0-9]+[.][0-9]{2}$").matcher(montant).find() ? Double.parseDouble(montant) : -1;
     }
+
+    @Override
+    public String toString() {
+        return "Facture{" +
+                "nomClient='" + nomClient + '\'' +
+                ", totalSansTaxes=" + totalSansTaxes +
+                ", modePaiement=" + modePaiement +
+                ", montantTaxes=" + montantTaxes +
+                '}';
+    }
 }

@@ -47,14 +47,9 @@ public class AppGraphicalController extends AppController{
 
     @FXML
     private void initialize() {
-
-        nomAcheteur.setOnKeyReleased(event -> afficherMontantTotal());
+        // afficher total
         montantSansTaxes.setOnKeyReleased(event -> afficherMontantTotal());
         taxes.setOnKeyReleased(event -> afficherMontantTotal());
-        argent.setOnMouseReleased(event -> afficherMontantTotal());
-        debit.setOnMouseReleased(event -> afficherMontantTotal());
-        credit.setOnMouseReleased(event -> afficherMontantTotal());
-
 
         // bouton creer facture
         creer.setOnMouseClicked(event->{
@@ -63,12 +58,6 @@ public class AppGraphicalController extends AppController{
             double taxes = getMontantTaxes();
             ModePaiements modePaiement = getModePaiement();
             String erreurs = verificationChamps();
-
-                    System.out.println("\nNom dew l'acheteur: " + nomAcheteur);// TODELETE
-                    System.out.println("Montant sans taxes: " + montantSansTaxes);// TODELETE
-                    System.out.println("Montant des taxes: " + taxes);// TODELETE
-                    System.out.println("Mode de paiement: " + modePaiement);// TODELETE
-                    System.out.println("Total des dons: " + dons.getTotalDons());// TODELETE
 
             if (erreurs.contains("nom")) {
                 System.out.println("display erreur nomAcheteur invalide"); // TODO
@@ -81,22 +70,19 @@ public class AppGraphicalController extends AppController{
             }
             if (erreurs.contains("montantTaxes")) {
                 System.out.println("display erreur taxes invalide"); // TODO
-
             }
 
-            if (nomAcheteur != null && modePaiement != null && montantSansTaxes != -1 && taxes != -1) {
-                facturesFactory.build(nomAcheteur, montantSansTaxes, modePaiement, taxes); // création d'une facture
+
+            if (erreurs == "") {
+                Facture facture = facturesFactory.build(nomAcheteur, montantSansTaxes, modePaiement, taxes); // création d'une facture
                 afficherDons(dons.ajouterDons(montantSansTaxes+taxes, modePaiement)); // ajout et affichage des dons
+                rafraichirPage();
+                System.out.println("Nouvelle Facture Créée: "+facture.toString());
             }
         });
 
         // réinitialise tous les champs
-        rafraichir.setOnMouseClicked(event -> {
-            setNomAcheteur("");
-            setMontantTaxes("");
-            setMontantSansTaxes("");
-            setModePaiement("");
-        });
+        rafraichir.setOnMouseClicked(event -> rafraichirPage());
     }
 
     private String verificationChamps() {
@@ -109,7 +95,6 @@ public class AppGraphicalController extends AppController{
     }
 
     private void afficherMontantTotal() {
-        System.out.println(verificationChamps());
             montantTotal.textProperty().setValue(
                     !verificationChamps().contains("montantTaxes") && !verificationChamps().contains("montantSansTaxes") ?
                             (getMontantSansTaxes()+getMontantTaxes())+"$"
@@ -117,6 +102,13 @@ public class AppGraphicalController extends AppController{
             );
     }
 
+    private void rafraichirPage() {
+        setNomAcheteur("");
+        setMontantTaxes("");
+        setMontantSansTaxes("");
+        setModePaiement("");
+        afficherMontantTotal();
+    }
     private void setNomAcheteur(String nom) {
         nomAcheteur.textProperty().setValue(nom);
     }
@@ -176,8 +168,7 @@ public class AppGraphicalController extends AppController{
     }
 
 
-    @FXML
-    void afficherDons(double montant){
+    private void afficherDons(double montant) {
         montantDons.setText("Total: " + decfor.format(montant) + "$");
     }
 }
