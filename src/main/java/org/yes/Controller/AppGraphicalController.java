@@ -100,8 +100,13 @@ public class AppGraphicalController extends AppController{
     private String getMontantDons() {
         return montantDons.textProperty().getValue();
     }
-    private String setMontantTotal(){
+    private void setMontantTotal(){
+        String montant;
         montantTotal.textProperty().setValue(getEcotaxe() + getTps() + getTvq() + getMontantSansTaxes());
-        return montantTotal.textProperty().getValue();
+        montantTotal.textProperty().getValue();
+
+        double d = 100;
+        montant = "" + d;
+        montantTotal.setText(montant);
     }
 }
