@@ -6,6 +6,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
+import org.yes.Model.Dons;
 import org.yes.Model.ModePaiements;
 
 /**
@@ -34,6 +35,7 @@ public class AppGraphicalController extends AppController{
     private Button annuler;
     @FXML
     private Text montantTotal;
+    Dons dons = new Dons();
 
 
 
@@ -47,6 +49,9 @@ public class AppGraphicalController extends AppController{
             System.out.println(getModePaiement());
             System.out.println(getMontantDons());
             System.out.println("CRÉER FACTURE FACOTREY");
+            double montant = Double.parseDouble(getMontantSansTaxes() + getTaxes());
+            double don = dons.ajouterDons(montant, getModePaiement());
+            AfficherDons(don);
 
         });
 
@@ -74,7 +79,7 @@ public class AppGraphicalController extends AppController{
     /**
      * va chercher le mode de paiement coché par l'utilisateur
      */
-    private String getModePaiement() {
+    private ModePaiements getModePaiement() {
         return argent.isSelected() ? argent.getId() : credit.isSelected() ? credit.getId() : debit.isSelected() ? debit.getId() : "";
     }
 
@@ -95,5 +100,10 @@ public class AppGraphicalController extends AppController{
         double d = 100;
         montant = "" + d;
         montantTotal.setOnKeyPressed(keyEvent -> );
+    }
+
+    @FXML
+    void AfficherDons(double montant){
+        montantDons.setText("Total: " + montant + "$");
     }
 }
