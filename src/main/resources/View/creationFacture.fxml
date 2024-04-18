@@ -42,11 +42,11 @@
                <font>
                   <Font size="14.0" />
                </font></Label>
-            <Button layoutX="337.0" layoutY="300.0" mnemonicParsing="false" style="-fx-background-color: #dbfbcb;" text="Créer" textFill="#292929" />
+            <Button layoutX="337.0" layoutY="300.0" mnemonicParsing="false" style="-fx-background-color: #dbfbcb;" text="Créer" fx:id="creer" textFill="#292929" />
             <Button layoutX="227.0" layoutY="300.0" mnemonicParsing="false" style="-fx-background-color: #dbfbcb;" text="Annuler" textFill="#292929" />
             <Pane layoutX="14.0" layoutY="13.0" prefHeight="293.0" prefWidth="170.0" style="-fx-background-color: #dbfbcb;">
                <children>
-                  <Text fill="#292929" layoutX="5.0" layoutY="29.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-border-color: #;" text="Mode de Paiement">
+                  <Text fill="#292929" layoutX="5.0" layoutY="29.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Mode de Paiement">
                      <font>
                         <Font size="19.0" />
                      </font>
@@ -73,12 +73,12 @@
             </Pane>
             <Pane layoutX="416.0" layoutY="13.0" prefHeight="130.0" prefWidth="170.0" style="-fx-background-color: #dbfbcb;">
                <children>
-                  <Text fill="#292929" layoutX="63.0" layoutY="28.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-border-color: #;" text="Dons">
+                  <Text fill="#292929" layoutX="63.0" layoutY="28.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Dons">
                      <font>
                         <Font size="19.0" />
                      </font>
                   </Text>
-                  <Text layoutX="34.0" layoutY="103.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Total : 0,00$">
+                  <Text layoutX="34.0" layoutY="103.0" strokeType="OUTSIDE" strokeWidth="0.0" fx:id="montantDons" text="Total : 0,00$">
                      <font>
                         <Font size="19.0" />
                      </font>

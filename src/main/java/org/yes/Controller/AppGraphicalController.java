@@ -6,6 +6,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
+import org.yes.Model.Dons;
 import org.yes.Model.ModePaiements;
 
 /**
@@ -115,7 +116,13 @@ public class AppGraphicalController extends AppController{
         if (nomAcheteurRempli && taxesRempli && montantSansTaxesRempli == true){
             return true;
         }
-
         return false;
+
+    }
+
+    @FXML
+    void AfficherDons(double montant){
+        montantDons.setText("Total: " + montant + "$");
+
     }
 }

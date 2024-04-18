@@ -9,31 +9,28 @@ import java.util.regex.Pattern;
  * - le montant de taxes ajouté au total (0.00$)
  * - le mode de paiement employé (argent|débit|crédit)
  */
-public class Facture implements IFacture {
+public class Facture {
     private String nomClient;
     private double totalSansTaxes;
     private ModePaiements modePaiement;
     private double montantTaxes;
 
 
-    public Facture() {}
-
-    @Override
-    public void build(String nomClient, String totalSansTaxes, String modePaiement, String montantTaxes) {
-        this.setNomClient(nomClient);
-        this.setTotalSansTaxes(totalSansTaxes);
-        this.setTaxes(montantTaxes);
-        this.setModePaiement(modePaiement);
+    public Facture(String nomClient, double totalSansTaxes, ModePaiements modePaiement, double montantTaxes) {
+        this.nomClient = nomClient;
+        this.totalSansTaxes = totalSansTaxes;
+        this.modePaiement = modePaiement;
+        this.montantTaxes = montantTaxes;
     }
 
     public void setNomClient(String nomClient) {
-
         this.nomClient = nomClient;
     }
 
     public void setTotalSansTaxes(String totalSansTaxes) {
-        if (Pattern.compile("^[0-9]*[.][0-9]{2}$").matcher(totalSansTaxes).find()) this.totalSansTaxes = Double.parseDouble(totalSansTaxes);
-        else throw new IllegalArgumentException("Format: 'total sans taxes' invalide");
+        double valeurSansTaxes = verificationTaxes(totalSansTaxes);
+        if (valeurSansTaxes != -1) this.totalSansTaxes = verificationTaxes(totalSansTaxes);
+        else throw new IllegalArgumentException("Format: 'montant sans taxes' invalide");
     }
 
     public void setModePaiement(String modePaiement) {
@@ -41,7 +38,8 @@ public class Facture implements IFacture {
     }
 
     public void setTaxes(String montantTaxes) {
-        if (Pattern.compile("^[0-9]+[.][0-9]{2}$").matcher(montantTaxes).find()) this.montantTaxes = Double.parseDouble(montantTaxes);
+        double valeurTaxes = verificationTaxes(montantTaxes);
+        if (valeurTaxes != -1) this.montantTaxes = verificationTaxes(montantTaxes);
         else throw new IllegalArgumentException("Format: 'montant taxes' invalide");
     }
 
@@ -59,5 +57,13 @@ public class Facture implements IFacture {
 
     public double getTaxes() {
         return montantTaxes;
+    }
+
+    public static double verificationTotalSansTaxes(String montantSansTaxes) {
+        return Pattern.compile("^[0-9]+[.][0-9]{2}$").matcher(montantSansTaxes).find() ? Double.parseDouble(montantSansTaxes) : -1;
+    }
+
+    public static double verificationTaxes(String montantTaxes) {
+        return Pattern.compile("^[0-9]+[.][0-9]{2}$").matcher(montantTaxes).find() ? Double.parseDouble(montantTaxes) : -1;
     }
 }

@@ -21,7 +21,7 @@ class FactureTest {
 
     @BeforeEach
     void setUp() {
-        facture1 = new Facture();
+        //facture1 = new Facture();
     }
 
     @ParameterizedTest

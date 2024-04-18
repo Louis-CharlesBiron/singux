@@ -1,10 +1,10 @@
 package org.yes.Model;
 
-public abstract class FacturesFactory {
-    public IFacture create(String nomClient, String totalSansTaxes, String modePaiement, String montantTaxes) {
-        IFacture facture = createFacture();
-        facture.build(nomClient, totalSansTaxes, modePaiement, montantTaxes);
-        return facture;
+public class FacturesFactory implements IFacture {
+
+
+    @Override
+    public Facture build(String nomClient, double totalSansTaxes, ModePaiements modePaiement, double montantTaxes) {
+        return new Facture(nomClient, totalSansTaxes, modePaiement, montantTaxes);
     }
-    public abstract IFacture createFacture();
 }
