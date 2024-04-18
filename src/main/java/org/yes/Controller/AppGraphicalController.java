@@ -19,12 +19,13 @@ import org.yes.Model.ModePaiements;
 public class AppGraphicalController extends AppController{
 
     FacturesFactory facturesFactory = new FacturesFactory();
+    Dons dons = new Dons();
     @FXML
     public Text montantDons;
     @FXML
     private TextField nomAcheteur;
     @FXML
-    private TextField montantSansTaxe;
+    private TextField montantSansTaxes;
     @FXML
     private TextField taxes;
     @FXML
@@ -44,17 +45,27 @@ public class AppGraphicalController extends AppController{
 
     @FXML
     private void initialize() {
-        // Création facture
+
+        nomAcheteur.setOnKeyPressed(event -> {});
+        montantSansTaxes.setOnKeyPressed(event -> {});
+        taxes.setOnKeyPressed(event -> {});
+        argent.setOnMouseClicked(event -> {});
+        debit.setOnMouseClicked(event -> {});
+        credit.setOnMouseClicked(event -> {});
+
+
+        // boutton creer facture
         creer.setOnMouseClicked(event->{
             String nomAcheteur = getNomAcheteur();
-            double montantSansTaxes = getMontantSansTaxes(),
-                   montantTaxes = getMontantTaxes();
+            double montantSansTaxes = getMontantSansTaxes();
+            double taxes = getMontantTaxes();
             ModePaiements modePaiement = getModePaiement();
-                    System.out.println(nomAcheteur);
-                    System.out.println(montantSansTaxes);
-                    System.out.println(montantTaxes);
-                    System.out.println(modePaiement);
-                    System.out.println(getMontantDons());
+
+                    System.out.println(nomAcheteur);// TODELETE
+                    System.out.println(montantSansTaxes);// TODELETE
+                    System.out.println(taxes);// TODELETE
+                    System.out.println(modePaiement);// TODELETE
+                    System.out.println(dons.getTotalDons());// TODELETE
 
             if (nomAcheteur == null) {
                 System.out.println("display erreur nomAcheteur invalide");
@@ -65,14 +76,18 @@ public class AppGraphicalController extends AppController{
             if (montantSansTaxes == -1) {
                 System.out.println("display erreur montantSansTaxes invalide");
             }
-            if (montantTaxes == -1) {
-                System.out.println("display erreur montantTaxes invalide");
+            if (taxes == -1) {
+                System.out.println("display erreur taxes invalide");
 
             }
 
-            if (nomAcheteur != null && modePaiement != null && montantSansTaxes != -1 && montantTaxes != -1) facturesFactory.build(nomAcheteur, montantSansTaxes, modePaiement, montantTaxes);
+            if (nomAcheteur != null && modePaiement != null && montantSansTaxes != -1 && taxes != -1) {
+                facturesFactory.build(nomAcheteur, montantSansTaxes, modePaiement, taxes); // création d'une facture
+                afficherDons(dons.ajouterDons(montantSansTaxes+taxes, modePaiement)); // ajout et affichage des dons
+            }
         });
 
+        // réinitialise tous les champs
         rafraichir.setOnMouseClicked(event -> {
             setNomAcheteur("");
             setMontantTaxes("");
@@ -87,7 +102,7 @@ public class AppGraphicalController extends AppController{
     }
 
     private void setMontantSansTaxes(String montant) {
-        montantSansTaxe.textProperty().setValue(montant);
+        montantSansTaxes.textProperty().setValue(montant);
     }
 
     private void setMontantTaxes(String montant) {
@@ -110,14 +125,14 @@ public class AppGraphicalController extends AppController{
      */
     private String getNomAcheteur() {
         String nom = nomAcheteur.textProperty().getValue();
-        return nom.matches("^[a-zA-ZÀ-ö\s]+$") ? nom : null;
+        return nom.matches("^[a-zA-ZÀ-ö -]+$") ? nom : null;
     }
 
     /**
      * @return -> le montant de l'achat sans les taxes et dons ou -1 si invalide
      */
     private double getMontantSansTaxes() {
-        return Facture.verificationTotalSansTaxes(montantSansTaxe.textProperty().getValue());
+        return Facture.verificationTotalSansTaxes(montantSansTaxes.textProperty().getValue());
     }
 
     /**
@@ -139,12 +154,9 @@ public class AppGraphicalController extends AppController{
     private double getMontantTaxes() {
         return Facture.verificationTotalSansTaxes(taxes.textProperty().getValue());
     }
-    private String getMontantDons() {
-        return montantDons.textProperty().getValue();
-    }
 
-    private void setMontantTotal() {
-
+    private void afficherMontantTotal() {
+        montantTotal.textProperty().setValue("");
     }
 
     //private void setMontantTotal() {
@@ -180,7 +192,7 @@ public class AppGraphicalController extends AppController{
     //}
 
     @FXML
-    void AfficherDons(double montant){
+    void afficherDons(double montant){
         montantDons.setText("Total: " + montant + "$");
     }
 }
