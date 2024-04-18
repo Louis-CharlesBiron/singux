@@ -10,6 +10,8 @@ import org.yes.Model.Facture;
 import org.yes.Model.FacturesFactory;
 import org.yes.Model.ModePaiements;
 
+import java.text.DecimalFormat;
+
 /**
  * @Author Maek Lorman
  * Classe AppGraphicalController
@@ -39,6 +41,7 @@ public class AppGraphicalController extends AppController{
     private Button rafraichir;
     @FXML
     private Text montantTotal;
+    private static final DecimalFormat decfor = new DecimalFormat("0.00");
 
 
 
@@ -60,11 +63,11 @@ public class AppGraphicalController extends AppController{
             double taxes = getMontantTaxes();
             ModePaiements modePaiement = getModePaiement();
 
-                    System.out.println(nomAcheteur);// TODELETE
-                    System.out.println(montantSansTaxes);// TODELETE
-                    System.out.println(taxes);// TODELETE
-                    System.out.println(modePaiement);// TODELETE
-                    System.out.println(dons.getTotalDons());// TODELETE
+                    System.out.println("\nNom dew l'acheteur: " + nomAcheteur);// TODELETE
+                    System.out.println("Montant sans taxes: " + montantSansTaxes);// TODELETE
+                    System.out.println("Montant des taxes: " + taxes);// TODELETE
+                    System.out.println("Mode de paiement: " + modePaiement);// TODELETE
+                    System.out.println("Total des dons: " + dons.getTotalDons());// TODELETE
 
             if (nomAcheteur == null) {
                 System.out.println("display erreur nomAcheteur invalide");
@@ -174,6 +177,6 @@ public class AppGraphicalController extends AppController{
 
     @FXML
     void afficherDons(double montant){
-        montantDons.setText("Total: " + montant + "$");
+        montantDons.setText("Total: " + decfor.format(montant) + "$");
     }
 }
