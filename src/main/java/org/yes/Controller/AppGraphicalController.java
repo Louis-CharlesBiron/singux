@@ -94,6 +94,6 @@ public class AppGraphicalController extends AppController{
 
         double d = 100;
         montant = "" + d;
-        montantTotal.setText(montant);
+        montantTotal.setOnKeyPressed(keyEvent -> );
     }
 }
