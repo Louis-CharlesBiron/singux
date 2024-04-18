@@ -13,7 +13,7 @@ import org.yes.Model.ModePaiements;
  * Classe AppGraphicalController
  * cette classe s'occupe d'aller chercher des informations importantes pour la facture
  */
-public class AppGraphicalController {
+public class AppGraphicalController extends AppController{
     @FXML
     public Text montantDons;
     @FXML
@@ -100,11 +100,8 @@ public class AppGraphicalController {
     private String getMontantDons() {
         return montantDons.textProperty().getValue();
     }
-
     private String setMontantTotal(){
-
         montantTotal.textProperty().setValue(getEcotaxe() + getTps() + getTvq() + getMontantSansTaxes());
         return montantTotal.textProperty().getValue();
-
     }
 }
