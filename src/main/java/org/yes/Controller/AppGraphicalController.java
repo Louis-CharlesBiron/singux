@@ -139,7 +139,7 @@ public class AppGraphicalController extends AppController{
     private double getMontantTaxes() {
         return Facture.verificationTotalSansTaxes(taxes.textProperty().getValue());
     }
-    private String getMontantDons() {// PAS BON
+    private String getMontantDons() {
         return montantDons.textProperty().getValue();
     }
 
@@ -180,7 +180,7 @@ public class AppGraphicalController extends AppController{
     //}
 
     @FXML
-    void AfficherDons(double montant){// PAS BON
+    void AfficherDons(double montant){
         montantDons.setText("Total: " + montant + "$");
     }
 }
