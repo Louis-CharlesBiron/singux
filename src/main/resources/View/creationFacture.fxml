@@ -11,7 +11,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.yes.Controller.AppGraphicalController">
    <children>
       <AnchorPane id="title" prefHeight="50.0" prefWidth="600.0" style="-fx-border-color: black; -fx-background-color: #dbfbcb;">
          <children>
@@ -27,23 +27,23 @@
                <font>
                   <Font size="19.0" />
                </font></Text>
-            <TextField id="nom-acheteur" layoutX="213.0" layoutY="86.0" prefHeight="26.0" prefWidth="182.0" promptText="Entrez le nom de l'acheteur" />
+            <TextField fx:id="nomAcheteur" layoutX="213.0" layoutY="86.0" prefHeight="26.0" prefWidth="182.0" promptText="Entrez le nom de l'acheteur" />
             <Label layoutX="248.0" layoutY="59.0" text="Nom de l'acheteur" textFill="#dbfbcb">
                <font>
                   <Font size="14.0" />
                </font></Label>
-            <TextField id="avant-taxe" layoutX="278.0" layoutY="160.0" prefHeight="26.0" prefWidth="50.0" promptText="0.00$" />
+            <TextField fx:id="montantSansTaxe" layoutX="278.0" layoutY="160.0" prefHeight="26.0" prefWidth="50.0" promptText="0.00$" />
             <Label layoutX="244.0" layoutY="135.0" text="Montant sans taxes" textFill="#dbfbcb">
                <font>
                   <Font size="14.0" />
                </font></Label>
-            <TextField id="taxes" layoutX="275.0" layoutY="242.0" prefHeight="25.0" prefWidth="50.0" promptText="0.00$" />
+            <TextField fx:id="taxes" layoutX="275.0" layoutY="242.0" prefHeight="25.0" prefWidth="50.0" promptText="0.00$" />
             <Label layoutX="245.0" layoutY="203.0" prefHeight="36.0" prefWidth="120.0" text="Montant des taxes" textFill="#dbfbcb">
                <font>
                   <Font size="14.0" />
                </font></Label>
             <Button layoutX="337.0" layoutY="300.0" mnemonicParsing="false" style="-fx-background-color: #dbfbcb;" text="Créer" fx:id="creer" textFill="#292929" />
-            <Button layoutX="227.0" layoutY="300.0" mnemonicParsing="false" style="-fx-background-color: #dbfbcb;" text="Annuler" textFill="#292929" />
+            <Button layoutX="227.0" layoutY="300.0" mnemonicParsing="false" style="-fx-background-color: #dbfbcb;" text="Rafraichir" fx:id="rafraichir" textFill="#292929" />
             <Pane layoutX="14.0" layoutY="13.0" prefHeight="293.0" prefWidth="170.0" style="-fx-background-color: #dbfbcb;">
                <children>
                   <Text fill="#292929" layoutX="5.0" layoutY="29.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Mode de Paiement">
@@ -51,7 +51,7 @@
                         <Font size="19.0" />
                      </font>
                   </Text>
-                  <RadioButton layoutX="9.0" layoutY="104.0" mnemonicParsing="false" style="-fx-border-color: #;" text="Argent" textFill="#292929">
+                  <RadioButton layoutX="9.0" layoutY="104.0" mnemonicParsing="false" fx:id="argent" id="ARGENT" text="Argent" textFill="#292929">
                      <font>
                         <Font size="16.0" />
                      </font>
@@ -59,12 +59,12 @@
                         <ToggleGroup fx:id="ModePaiement" />
                      </toggleGroup>
                   </RadioButton>
-                  <RadioButton layoutX="8.0" layoutY="150.0" mnemonicParsing="false" style="-fx-border-color: #;" text="Débit" textFill="#292929" toggleGroup="$ModePaiement">
+                  <RadioButton layoutX="8.0" layoutY="150.0" mnemonicParsing="false" fx:id="debit" id="DEBIT" text="Débit" textFill="#292929" toggleGroup="$ModePaiement">
                      <font>
                         <Font size="16.0" />
                      </font>
                   </RadioButton>
-                  <RadioButton layoutX="8.0" layoutY="194.0" mnemonicParsing="false" style="-fx-border-color: #;" text="Crédit" textFill="#292929" toggleGroup="$ModePaiement">
+                  <RadioButton layoutX="8.0" layoutY="194.0" mnemonicParsing="false" fx:id="credit" id="CREDIT" text="Crédit" textFill="#292929" toggleGroup="$ModePaiement">
                      <font>
                         <Font size="16.0" />
                      </font>
@@ -92,7 +92,7 @@
                         <Font size="15.0" />
                      </font>
                   </Text>
-                  <Text id="montantTotal" layoutX="62.0" layoutY="86.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0,00$">
+                  <Text fx:id="montantTotal" layoutX="62.0" layoutY="86.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0,00$">
                      <font>
                         <Font size="19.0" />
                      </font>

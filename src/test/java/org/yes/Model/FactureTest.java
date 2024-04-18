@@ -72,7 +72,7 @@ class FactureTest {
     private boolean testContiensSeulementLettres(String nomComplet){
 
         //création d'un expression pouvant contenir que des lettres
-        String nomSeulementLettres = "^[a-zA-ZÀ-ö\\s]+$";
+        String nomSeulementLettres = "^[a-zA-ZÀ-ö\s]+$";
 
         //Retourne Vrai si le nom n'a seulement que des lettres inclus dans le String plus haut
         return nomComplet.matches(nomSeulementLettres);

@@ -7,6 +7,8 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import org.yes.Model.Dons;
+import org.yes.Model.Facture;
+import org.yes.Model.FacturesFactory;
 import org.yes.Model.ModePaiements;
 
 /**
@@ -15,6 +17,8 @@ import org.yes.Model.ModePaiements;
  * cette classe s'occupe d'aller chercher des informations importantes pour la facture
  */
 public class AppGraphicalController extends AppController{
+
+    FacturesFactory facturesFactory = new FacturesFactory();
     @FXML
     public Text montantDons;
     @FXML
@@ -32,7 +36,7 @@ public class AppGraphicalController extends AppController{
     @FXML
     private Button creer;
     @FXML
-    private Button annuler;
+    private Button rafraichir;
     @FXML
     private Text montantTotal;
 
@@ -42,87 +46,141 @@ public class AppGraphicalController extends AppController{
     private void initialize() {
         // Création facture
         creer.setOnMouseClicked(event->{
-            System.out.println(getNomAcheteur());
-            System.out.println(getMontantSansTaxes());
-            System.out.println(getTaxes());
-            System.out.println(getModePaiement());
-            System.out.println(getMontantDons());
-            System.out.println("CRÉER FACTURE FACOTREY");
+            String nomAcheteur = getNomAcheteur();
+            double montantSansTaxes = getMontantSansTaxes(),
+                   montantTaxes = getMontantTaxes();
+            ModePaiements modePaiement = getModePaiement();
+                    System.out.println(nomAcheteur);
+                    System.out.println(montantSansTaxes);
+                    System.out.println(montantTaxes);
+                    System.out.println(modePaiement);
+                    System.out.println(getMontantDons());
 
+            if (nomAcheteur == null) {
+                System.out.println("display erreur nomAcheteur invalide");
+            }
+            if (modePaiement == null) {
+                System.out.println("display erreur modePaiement invalide");
+            }
+            if (montantSansTaxes == -1) {
+                System.out.println("display erreur montantSansTaxes invalide");
+            }
+            if (montantTaxes == -1) {
+                System.out.println("display erreur montantTaxes invalide");
+
+            }
+
+            if (nomAcheteur != null && modePaiement != null && montantSansTaxes != -1 && montantTaxes != -1) facturesFactory.build(nomAcheteur, montantSansTaxes, modePaiement, montantTaxes);
         });
 
-        // Annuler facture jar?? (on devrait pt plus faire jar reset)
-        annuler.setOnMouseClicked(event -> {
-
+        rafraichir.setOnMouseClicked(event -> {
+            setNomAcheteur("");
+            setMontantTaxes("");
+            setMontantSansTaxes("");
+            setModePaiement("");
         });
     }
 
 
+    private void setNomAcheteur(String nom) {
+        nomAcheteur.textProperty().setValue(nom);
+    }
+
+    private void setMontantSansTaxes(String montant) {
+        montantSansTaxe.textProperty().setValue(montant);
+    }
+
+    private void setMontantTaxes(String montant) {
+        taxes.textProperty().setValue(montant);
+    }
+
+    private void setModePaiement(String modePaiement) {
+        if (modePaiement == "argent") argent.setSelected(true);
+        else if (modePaiement == "credit") credit.setSelected(true);
+        else if (modePaiement == "debit") debit.setSelected(true);
+        else {
+            argent.setSelected(false);
+            credit.setSelected(false);
+            debit.setSelected(false);
+        }
+    }
+
     /**
-     * @return le nom de l'acheteur
+     * @return le nom de l'acheteur ou null si invalide
      */
     private String getNomAcheteur() {
-        return nomAcheteur.textProperty().getValue();
+        String nom = nomAcheteur.textProperty().getValue();
+        return nom.matches("^[a-zA-ZÀ-ö\s]+$") ? nom : null;
     }
 
     /**
-     * @return -> le montant de l'achat sans les taxes et dons
+     * @return -> le montant de l'achat sans les taxes et dons ou -1 si invalide
      */
-    private String getMontantSansTaxes() {
-        return montantSansTaxe.textProperty().getValue();
+    private double getMontantSansTaxes() {
+        return Facture.verificationTotalSansTaxes(montantSansTaxe.textProperty().getValue());
     }
 
     /**
-     * va chercher le mode de paiement coché par l'utilisateur
+     * va chercher le mode de paiement coché par l'utilisateur ou null si invalide
      */
-    private String getModePaiement() {
-        return argent.isSelected() ? argent.getId() : credit.isSelected() ? credit.getId() : debit.isSelected() ? debit.getId() : "";
+    private ModePaiements getModePaiement() {
+        ModePaiements modePaiement;
+        try {
+            modePaiement = ModePaiements.valueOf(argent.isSelected() ? argent.getId() : credit.isSelected() ? credit.getId() : debit.isSelected() ? debit.getId() : "");
+        } catch (Exception e) {
+            modePaiement = null;
+        }
+        return modePaiement;
     }
 
     /**
-     * @return -> la valeur des taxes appliquées
+     * @return -> la valeur des taxes appliquées ou -1 si invalide
      */
-    private String getTaxes() {
-        return taxes.textProperty().getValue();
+    private double getMontantTaxes() {
+        return Facture.verificationTotalSansTaxes(taxes.textProperty().getValue());
     }
-    private String getMontantDons() {
+    private String getMontantDons() {// PAS BON
         return montantDons.textProperty().getValue();
     }
+
     private void setMontantTotal() {
-        String montantString;
-        Double montantDouble;
-        montantDouble = Double.valueOf(getMontantSansTaxes() + getTaxes());
-        montantString = String.valueOf(montantDouble);
-
-        this.montantTotal.setText(montantString);
-
-        // montantTotal.setOnKeyPressed(keyEvent -> this.montantTotal.setText(montantString));
-    }
-    private boolean textRempliPourMontantTotal(){
-        boolean taxesRempli = false;
-        boolean nomAcheteurRempli = false;
-        boolean montantSansTaxesRempli = false;
-
-        if (getNomAcheteur() != null){
-            nomAcheteurRempli = true;
-        }
-        if (getTaxes() != null){
-            taxesRempli = true;
-        }
-        if (getMontantSansTaxes() != null){
-            montantSansTaxesRempli = true;
-        }
-
-        if (nomAcheteurRempli && taxesRempli && montantSansTaxesRempli == true){
-            return true;
-        }
-        return false;
 
     }
+
+    //private void setMontantTotal() {
+    //    String montantString;
+    //    Double montantDouble;
+    //    montantDouble = Double.valueOf(getMontantSansTaxes() + getTaxes());
+    //    montantString = String.valueOf(montantDouble);
+//
+    //    this.montantTotal.setText(montantString);
+//
+    //    // montantTotal.setOnKeyPressed(keyEvent -> this.montantTotal.setText(montantString));
+    //}
+    //private boolean textRempliPourMontantTotal(){
+    //    boolean taxesRempli = false;
+    //    boolean nomAcheteurRempli = false;
+    //    boolean montantSansTaxesRempli = false;
+//
+    //    if (getNomAcheteur() != null){
+    //        nomAcheteurRempli = true;
+    //    }
+    //    if (getTaxes() != null){
+    //        taxesRempli = true;
+    //    }
+    //    if (getMontantSansTaxes() != null){
+    //        montantSansTaxesRempli = true;
+    //    }
+//
+    //    if (nomAcheteurRempli && taxesRempli && montantSansTaxesRempli == true){
+    //        return true;
+    //    }
+    //    return false;
+//
+    //}
 
     @FXML
-    void AfficherDons(double montant){
+    void AfficherDons(double montant){// PAS BON
         montantDons.setText("Total: " + montant + "$");
-
     }
 }
