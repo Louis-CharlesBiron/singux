@@ -99,7 +99,7 @@ public class AppGraphicalController extends AppController{
 
         double d = 100;
         montant = "" + d;
-        montantTotal.setOnKeyPressed(keyEvent -> );
+        //montantTotal.setOnKeyPressed(keyEvent -> );
     }
 
     @FXML

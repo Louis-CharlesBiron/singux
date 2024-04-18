@@ -9,21 +9,18 @@ import java.util.regex.Pattern;
  * - le montant de taxes ajouté au total (0.00$)
  * - le mode de paiement employé (argent|débit|crédit)
  */
-public class Facture implements IFacture {
+public class Facture {
     private String nomClient;
     private double totalSansTaxes;
     private ModePaiements modePaiement;
     private double montantTaxes;
 
 
-    public Facture() {}
-
-    @Override
-    public void build(String nomClient, String totalSansTaxes, String modePaiement, String montantTaxes) {
-        this.setNomClient(nomClient);
-        this.setTotalSansTaxes(totalSansTaxes);
-        this.setTaxes(montantTaxes);
-        this.setModePaiement(modePaiement);
+    public Facture(String nomClient, double totalSansTaxes, ModePaiements modePaiement, double montantTaxes) {
+        this.nomClient = nomClient;
+        this.totalSansTaxes = totalSansTaxes;
+        this.modePaiement = modePaiement;
+        this.montantTaxes = montantTaxes;
     }
 
     public void setNomClient(String nomClient) {
@@ -32,7 +29,8 @@ public class Facture implements IFacture {
     }
 
     public void setTotalSansTaxes(String totalSansTaxes) {
-        if (Pattern.compile("^[0-9]*[.][0-9]{2}$").matcher(totalSansTaxes).find()) this.totalSansTaxes = Double.parseDouble(totalSansTaxes);
+        if (Pattern.compile("^[0-9]*[.][0-9]{2}$").matcher(totalSansTaxes).find())
+            this.totalSansTaxes = Double.parseDouble(totalSansTaxes);
         else throw new IllegalArgumentException("Format: 'total sans taxes' invalide");
     }
 
@@ -41,7 +39,8 @@ public class Facture implements IFacture {
     }
 
     public void setTaxes(String montantTaxes) {
-        if (Pattern.compile("^[0-9]+[.][0-9]{2}$").matcher(montantTaxes).find()) this.montantTaxes = Double.parseDouble(montantTaxes);
+        if (Pattern.compile("^[0-9]+[.][0-9]{2}$").matcher(montantTaxes).find())
+            this.montantTaxes = Double.parseDouble(montantTaxes);
         else throw new IllegalArgumentException("Format: 'montant taxes' invalide");
     }
 
