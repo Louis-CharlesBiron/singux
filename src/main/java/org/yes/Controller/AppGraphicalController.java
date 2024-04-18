@@ -48,12 +48,12 @@ public class AppGraphicalController extends AppController{
     @FXML
     private void initialize() {
 
-        nomAcheteur.setOnKeyPressed(event -> afficherMontantTotal());
-        montantSansTaxes.setOnKeyPressed(event -> afficherMontantTotal());
-        taxes.setOnKeyPressed(event -> afficherMontantTotal());
-        argent.setOnMouseClicked(event -> afficherMontantTotal());
-        debit.setOnMouseClicked(event -> afficherMontantTotal());
-        credit.setOnMouseClicked(event -> afficherMontantTotal());
+        nomAcheteur.setOnKeyReleased(event -> afficherMontantTotal());
+        montantSansTaxes.setOnKeyReleased(event -> afficherMontantTotal());
+        taxes.setOnKeyReleased(event -> afficherMontantTotal());
+        argent.setOnMouseReleased(event -> afficherMontantTotal());
+        debit.setOnMouseReleased(event -> afficherMontantTotal());
+        credit.setOnMouseReleased(event -> afficherMontantTotal());
 
 
         // bouton creer facture
@@ -62,6 +62,7 @@ public class AppGraphicalController extends AppController{
             double montantSansTaxes = getMontantSansTaxes();
             double taxes = getMontantTaxes();
             ModePaiements modePaiement = getModePaiement();
+            String erreurs = verificationChamps();
 
                     System.out.println("\nNom dew l'acheteur: " + nomAcheteur);// TODELETE
                     System.out.println("Montant sans taxes: " + montantSansTaxes);// TODELETE
@@ -69,17 +70,17 @@ public class AppGraphicalController extends AppController{
                     System.out.println("Mode de paiement: " + modePaiement);// TODELETE
                     System.out.println("Total des dons: " + dons.getTotalDons());// TODELETE
 
-            if (nomAcheteur == null) {
-                System.out.println("display erreur nomAcheteur invalide");
+            if (erreurs.contains("nom")) {
+                System.out.println("display erreur nomAcheteur invalide"); // TODO
             }
-            if (modePaiement == null) {
-                System.out.println("display erreur modePaiement invalide");
+            if (erreurs.contains("modePaiement")) {
+                System.out.println("display erreur modePaiement invalide"); // TODO
             }
-            if (montantSansTaxes == -1) {
-                System.out.println("display erreur montantSansTaxes invalide");
+            if (erreurs.contains("montantSansTaxes")) {
+                System.out.println("display erreur montantSansTaxes invalide"); // TODO
             }
-            if (taxes == -1) {
-                System.out.println("display erreur taxes invalide");
+            if (erreurs.contains("montantTaxes")) {
+                System.out.println("display erreur taxes invalide"); // TODO
 
             }
 
