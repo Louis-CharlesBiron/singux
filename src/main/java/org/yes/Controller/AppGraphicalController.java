@@ -47,7 +47,8 @@ public class AppGraphicalController extends AppController{
             System.out.println(getTaxes());
             System.out.println(getModePaiement());
             System.out.println(getMontantDons());
-            System.out.println("CRÉER FACTURE FACOTREY");
+            System.out.println("CRÉER FACTURE FACTORY");
+            AfficherDons(1.00);
 
         });
 
