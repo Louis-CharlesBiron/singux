@@ -21,11 +21,7 @@ public class AppGraphicalController extends AppController{
     @FXML
     private TextField montantSansTaxe;
     @FXML
-    private TextField tps;
-    @FXML
-    private TextField tvq;
-    @FXML
-    private TextField ecotaxe;
+    private TextField taxes;
     @FXML
     private RadioButton debit;
     @FXML
@@ -47,9 +43,7 @@ public class AppGraphicalController extends AppController{
         creer.setOnMouseClicked(event->{
             System.out.println(getNomAcheteur());
             System.out.println(getMontantSansTaxes());
-            System.out.println(getTps());
-            System.out.println(getTvq());
-            System.out.println(getEcotaxe());
+            System.out.println(getTaxes());
             System.out.println(getModePaiement());
             System.out.println(getMontantDons());
             System.out.println("CRÉER FACTURE FACOTREY");
@@ -87,22 +81,15 @@ public class AppGraphicalController extends AppController{
     /**
      * @return -> la valeur des taxes appliquées
      */
-    private String getTps() {
-        return tps.textProperty().getValue();
+    private String getTaxes() {
+        return taxes.textProperty().getValue();
     }
-    private String getTvq() {
-        return tvq.textProperty().getValue();
-    }
-    private String getEcotaxe() {
-        return ecotaxe.textProperty().getValue();
-    }
-
     private String getMontantDons() {
         return montantDons.textProperty().getValue();
     }
     private void setMontantTotal(){
         String montant;
-        montantTotal.textProperty().setValue(getEcotaxe() + getTps() + getTvq() + getMontantSansTaxes());
+        montantTotal.textProperty().setValue(getTaxes() + getMontantSansTaxes());
         montantTotal.textProperty().getValue();
 
         double d = 100;

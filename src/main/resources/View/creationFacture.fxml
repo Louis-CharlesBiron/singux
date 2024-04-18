@@ -27,18 +27,18 @@
                <font>
                   <Font size="19.0" />
                </font></Text>
-            <TextField id="nom-acheteur" layoutX="213.0" layoutY="76.0" prefHeight="26.0" prefWidth="182.0" promptText="Entrez le nom de l'acheteur" />
-            <Label layoutX="248.0" layoutY="49.0" text="Nom de l'acheteur" textFill="#dbfbcb">
+            <TextField id="nom-acheteur" layoutX="213.0" layoutY="86.0" prefHeight="26.0" prefWidth="182.0" promptText="Entrez le nom de l'acheteur" />
+            <Label layoutX="248.0" layoutY="59.0" text="Nom de l'acheteur" textFill="#dbfbcb">
                <font>
                   <Font size="14.0" />
                </font></Label>
-            <TextField id="avant-taxe" layoutX="278.0" layoutY="143.0" prefHeight="26.0" prefWidth="50.0" promptText="0.00$" />
-            <Label layoutX="244.0" layoutY="118.0" text="Montant sans taxes" textFill="#dbfbcb">
+            <TextField id="avant-taxe" layoutX="278.0" layoutY="160.0" prefHeight="26.0" prefWidth="50.0" promptText="0.00$" />
+            <Label layoutX="244.0" layoutY="135.0" text="Montant sans taxes" textFill="#dbfbcb">
                <font>
                   <Font size="14.0" />
                </font></Label>
-            <TextField id="tps" layoutX="213.0" layoutY="239.0" prefHeight="25.0" prefWidth="50.0" promptText="0.00$" />
-            <Label layoutX="245.0" layoutY="181.0" prefHeight="36.0" prefWidth="120.0" text="Montant des taxes" textFill="#dbfbcb">
+            <TextField id="taxes" layoutX="275.0" layoutY="242.0" prefHeight="25.0" prefWidth="50.0" promptText="0.00$" />
+            <Label layoutX="245.0" layoutY="203.0" prefHeight="36.0" prefWidth="120.0" text="Montant des taxes" textFill="#dbfbcb">
                <font>
                   <Font size="14.0" />
                </font></Label>
@@ -99,11 +99,6 @@
                   </Text>
                </children>
             </Pane>
-            <TextField id="tvq" layoutX="279.0" layoutY="239.0" prefHeight="25.0" prefWidth="50.0" promptText="0.00$" />
-            <TextField id="ecotaxe" layoutX="342.0" layoutY="239.0" prefHeight="25.0" prefWidth="50.0" promptText="0.00$" />
-            <Text fill="#dbfbcb" layoutX="343.0" layoutY="225.0" strokeType="OUTSIDE" strokeWidth="0.0" text="EcoTaxes" />
-            <Text fill="#dbfbcb" layoutX="294.0" layoutY="225.0" strokeType="OUTSIDE" strokeWidth="0.0" text="TVQ" />
-            <Text fill="#dbfbcb" layoutX="228.0" layoutY="225.0" strokeType="OUTSIDE" strokeWidth="0.0" text="TPS" />
          </children>
       </AnchorPane>
    </children>
