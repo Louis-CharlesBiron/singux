@@ -16,11 +16,11 @@ public class Facture {
     private double montantTaxes;
 
 
-    public Facture(String nomClient, double totalSansTaxes, ModePaiements modePaiement, double montantTaxes) {
+    public Facture(String nomClient, double totalSansTaxes, ModePaiements modePaiement, double taxes) {
         this.nomClient = nomClient;
         this.totalSansTaxes = totalSansTaxes;
         this.modePaiement = modePaiement;
-        this.montantTaxes = montantTaxes;
+        this.montantTaxes = taxes;
     }
 
     public void setNomClient(String nomClient) {
@@ -40,7 +40,7 @@ public class Facture {
     public void setTaxes(String montantTaxes) {
         double valeurTaxes = verificationTaxes(montantTaxes);
         if (valeurTaxes != -1) this.montantTaxes = verificationTaxes(montantTaxes);
-        else throw new IllegalArgumentException("Format: 'montant taxes' invalide");
+        else throw new IllegalArgumentException("Format: 'taxes' invalide");
     }
 
     public String getnomClient() {
