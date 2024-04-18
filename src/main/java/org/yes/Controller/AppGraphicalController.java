@@ -13,7 +13,7 @@ import org.yes.Model.ModePaiements;
  * Classe AppGraphicalController
  * cette classe s'occupe d'aller chercher des informations importantes pour la facture
  */
-public class AppGraphicalController extends AppController {
+public class AppGraphicalController extends AppController{
     @FXML
     public Text montantDons;
     @FXML
@@ -36,15 +36,14 @@ public class AppGraphicalController extends AppController {
     private Text montantTotal;
 
 
+
     @FXML
     private void initialize() {
         // Création facture
-        creer.setOnMouseClicked(event -> {
+        creer.setOnMouseClicked(event->{
             System.out.println(getNomAcheteur());
             System.out.println(getMontantSansTaxes());
-            System.out.println(getTps());
-            System.out.println(getTvq());
-            System.out.println(getEcotaxe());
+            System.out.println(getTaxes());
             System.out.println(getModePaiement());
             System.out.println(getMontantDons());
             System.out.println("CRÉER FACTURE FACOTREY");
@@ -82,21 +81,19 @@ public class AppGraphicalController extends AppController {
     /**
      * @return -> la valeur des taxes appliquées
      */
-    private String getMontantTaxes() {
+    private String getTaxes() {
         return taxes.textProperty().getValue();
     }
-
     private String getMontantDons() {
         return montantDons.textProperty().getValue();
     }
-
-    private void setMontantTotal() {
+    private void setMontantTotal(){
         String montant;
-        montantTotal.textProperty().setValue(getMontantTaxes() + getMontantSansTaxes());
+        montantTotal.textProperty().setValue(getTaxes() + getMontantSansTaxes());
         montantTotal.textProperty().getValue();
 
         double d = 100;
         montant = "" + d;
-        montantTotal.setText(montant);
+        montantTotal.setOnKeyPressed(keyEvent -> );
     }
 }

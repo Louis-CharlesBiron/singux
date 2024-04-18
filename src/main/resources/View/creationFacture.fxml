@@ -27,18 +27,18 @@
                <font>
                   <Font size="19.0" />
                </font></Text>
-            <TextField id="nom-acheteur" layoutX="213.0" layoutY="76.0" prefHeight="26.0" prefWidth="182.0" promptText="Entrez le nom de l'acheteur" />
-            <Label layoutX="248.0" layoutY="49.0" text="Nom de l'acheteur" textFill="#dbfbcb">
+            <TextField id="nom-acheteur" layoutX="213.0" layoutY="86.0" prefHeight="26.0" prefWidth="182.0" promptText="Entrez le nom de l'acheteur" />
+            <Label layoutX="248.0" layoutY="59.0" text="Nom de l'acheteur" textFill="#dbfbcb">
                <font>
                   <Font size="14.0" />
                </font></Label>
-            <TextField id="avant-taxe" layoutX="278.0" layoutY="143.0" prefHeight="26.0" prefWidth="50.0" promptText="0.00$" />
-            <Label layoutX="244.0" layoutY="118.0" text="Montant sans taxes" textFill="#dbfbcb">
+            <TextField id="avant-taxe" layoutX="278.0" layoutY="160.0" prefHeight="26.0" prefWidth="50.0" promptText="0.00$" />
+            <Label layoutX="244.0" layoutY="135.0" text="Montant sans taxes" textFill="#dbfbcb">
                <font>
                   <Font size="14.0" />
                </font></Label>
-            <TextField id="tps" layoutX="213.0" layoutY="239.0" prefHeight="25.0" prefWidth="50.0" promptText="0.00$" />
-            <Label layoutX="245.0" layoutY="181.0" prefHeight="36.0" prefWidth="120.0" text="Montant des taxes" textFill="#dbfbcb">
+            <TextField id="taxes" layoutX="275.0" layoutY="242.0" prefHeight="25.0" prefWidth="50.0" promptText="0.00$" />
+            <Label layoutX="245.0" layoutY="203.0" prefHeight="36.0" prefWidth="120.0" text="Montant des taxes" textFill="#dbfbcb">
                <font>
                   <Font size="14.0" />
                </font></Label>
@@ -46,12 +46,12 @@
             <Button layoutX="227.0" layoutY="300.0" mnemonicParsing="false" style="-fx-background-color: #dbfbcb;" text="Annuler" textFill="#292929" />
             <Pane layoutX="14.0" layoutY="13.0" prefHeight="293.0" prefWidth="170.0" style="-fx-background-color: #dbfbcb;">
                <children>
-                  <Text fill="#292929" layoutX="5.0" layoutY="29.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Mode de Paiement">
+                  <Text fill="#292929" layoutX="5.0" layoutY="29.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-border-color: #;" text="Mode de Paiement">
                      <font>
                         <Font size="19.0" />
                      </font>
                   </Text>
-                  <RadioButton layoutX="9.0" layoutY="104.0" mnemonicParsing="false" text="Argent" textFill="#292929">
+                  <RadioButton layoutX="9.0" layoutY="104.0" mnemonicParsing="false" style="-fx-border-color: #;" text="Argent" textFill="#292929">
                      <font>
                         <Font size="16.0" />
                      </font>
@@ -59,12 +59,12 @@
                         <ToggleGroup fx:id="ModePaiement" />
                      </toggleGroup>
                   </RadioButton>
-                  <RadioButton layoutX="8.0" layoutY="150.0" mnemonicParsing="false" text="Débit" textFill="#292929" toggleGroup="$ModePaiement">
+                  <RadioButton layoutX="8.0" layoutY="150.0" mnemonicParsing="false" style="-fx-border-color: #;" text="Débit" textFill="#292929" toggleGroup="$ModePaiement">
                      <font>
                         <Font size="16.0" />
                      </font>
                   </RadioButton>
-                  <RadioButton layoutX="8.0" layoutY="194.0" mnemonicParsing="false" text="Crédit" textFill="#292929" toggleGroup="$ModePaiement">
+                  <RadioButton layoutX="8.0" layoutY="194.0" mnemonicParsing="false" style="-fx-border-color: #;" text="Crédit" textFill="#292929" toggleGroup="$ModePaiement">
                      <font>
                         <Font size="16.0" />
                      </font>
@@ -73,7 +73,7 @@
             </Pane>
             <Pane layoutX="416.0" layoutY="13.0" prefHeight="130.0" prefWidth="170.0" style="-fx-background-color: #dbfbcb;">
                <children>
-                  <Text fill="#292929" layoutX="63.0" layoutY="28.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Dons">
+                  <Text fill="#292929" layoutX="63.0" layoutY="28.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-border-color: #;" text="Dons">
                      <font>
                         <Font size="19.0" />
                      </font>
@@ -99,11 +99,6 @@
                   </Text>
                </children>
             </Pane>
-            <TextField id="tvq" layoutX="279.0" layoutY="239.0" prefHeight="25.0" prefWidth="50.0" promptText="0.00$" />
-            <TextField id="ecotaxe" layoutX="342.0" layoutY="239.0" prefHeight="25.0" prefWidth="50.0" promptText="0.00$" />
-            <Text fill="#dbfbcb" layoutX="343.0" layoutY="225.0" strokeType="OUTSIDE" strokeWidth="0.0" text="EcoTaxes" />
-            <Text fill="#dbfbcb" layoutX="294.0" layoutY="225.0" strokeType="OUTSIDE" strokeWidth="0.0" text="TVQ" />
-            <Text fill="#dbfbcb" layoutX="228.0" layoutY="225.0" strokeType="OUTSIDE" strokeWidth="0.0" text="TPS" />
          </children>
       </AnchorPane>
    </children>
