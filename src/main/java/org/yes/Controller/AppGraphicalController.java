@@ -13,7 +13,7 @@ import org.yes.Model.ModePaiements;
  * Classe AppGraphicalController
  * cette classe s'occupe d'aller chercher des informations importantes pour la facture
  */
-public class AppGraphicalController extends AppController{
+public class AppGraphicalController extends AppController {
     @FXML
     public Text montantDons;
     @FXML
@@ -21,11 +21,7 @@ public class AppGraphicalController extends AppController{
     @FXML
     private TextField montantSansTaxe;
     @FXML
-    private TextField tps;
-    @FXML
-    private TextField tvq;
-    @FXML
-    private TextField ecotaxe;
+    private TextField taxes;
     @FXML
     private RadioButton debit;
     @FXML
@@ -40,11 +36,10 @@ public class AppGraphicalController extends AppController{
     private Text montantTotal;
 
 
-
     @FXML
     private void initialize() {
         // Création facture
-        creer.setOnMouseClicked(event->{
+        creer.setOnMouseClicked(event -> {
             System.out.println(getNomAcheteur());
             System.out.println(getMontantSansTaxes());
             System.out.println(getTps());
@@ -87,22 +82,17 @@ public class AppGraphicalController extends AppController{
     /**
      * @return -> la valeur des taxes appliquées
      */
-    private String getTps() {
-        return tps.textProperty().getValue();
-    }
-    private String getTvq() {
-        return tvq.textProperty().getValue();
-    }
-    private String getEcotaxe() {
-        return ecotaxe.textProperty().getValue();
+    private String getMontantTaxes() {
+        return taxes.textProperty().getValue();
     }
 
     private String getMontantDons() {
         return montantDons.textProperty().getValue();
     }
-    private void setMontantTotal(){
+
+    private void setMontantTotal() {
         String montant;
-        montantTotal.textProperty().setValue(getEcotaxe() + getTps() + getTvq() + getMontantSansTaxes());
+        montantTotal.textProperty().setValue(getMontantTaxes() + getMontantSansTaxes());
         montantTotal.textProperty().getValue();
 
         double d = 100;
