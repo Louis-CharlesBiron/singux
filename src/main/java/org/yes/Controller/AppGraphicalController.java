@@ -1,6 +1,5 @@
 package org.yes.Controller;
 
-
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.RadioButton;
@@ -46,15 +45,15 @@ public class AppGraphicalController extends AppController{
     @FXML
     private void initialize() {
 
-        nomAcheteur.setOnKeyPressed(event -> {});
-        montantSansTaxes.setOnKeyPressed(event -> {});
-        taxes.setOnKeyPressed(event -> {});
-        argent.setOnMouseClicked(event -> {});
-        debit.setOnMouseClicked(event -> {});
-        credit.setOnMouseClicked(event -> {});
+        nomAcheteur.setOnKeyPressed(event -> afficherMontantTotal());
+        montantSansTaxes.setOnKeyPressed(event -> afficherMontantTotal());
+        taxes.setOnKeyPressed(event -> afficherMontantTotal());
+        argent.setOnMouseClicked(event -> afficherMontantTotal());
+        debit.setOnMouseClicked(event -> afficherMontantTotal());
+        credit.setOnMouseClicked(event -> afficherMontantTotal());
 
 
-        // boutton creer facture
+        // bouton creer facture
         creer.setOnMouseClicked(event->{
             String nomAcheteur = getNomAcheteur();
             double montantSansTaxes = getMontantSansTaxes();
@@ -96,6 +95,23 @@ public class AppGraphicalController extends AppController{
         });
     }
 
+    private String verificationChamps() {
+        String erreurs = "";
+        if (getNomAcheteur() == null) erreurs += "nomAcheteur";
+        if (getMontantTaxes() == -1) erreurs += "montantTaxes";
+        if (getMontantSansTaxes() == -1) erreurs += "montantSansTaxes";
+        if (getModePaiement() == null) erreurs += "modePaiement";
+        return erreurs;
+    }
+
+    private void afficherMontantTotal() {
+        System.out.println(verificationChamps());
+            montantTotal.textProperty().setValue(
+                    !verificationChamps().contains("montantTaxes") && !verificationChamps().contains("montantSansTaxes") ?
+                            (getMontantSansTaxes()+getMontantTaxes())+"$"
+                            : "inconnu"
+            );
+    }
 
     private void setNomAcheteur(String nom) {
         nomAcheteur.textProperty().setValue(nom);
@@ -132,7 +148,14 @@ public class AppGraphicalController extends AppController{
      * @return -> le montant de l'achat sans les taxes et dons ou -1 si invalide
      */
     private double getMontantSansTaxes() {
-        return Facture.verificationTotalSansTaxes(montantSansTaxes.textProperty().getValue());
+        return Facture.verificationFormatArgent(montantSansTaxes.textProperty().getValue());
+    }
+
+    /**
+     * @return -> la valeur des taxes appliquées ou -1 si invalide
+     */
+    private double getMontantTaxes() {
+        return Facture.verificationFormatArgent(taxes.textProperty().getValue());
     }
 
     /**
@@ -148,48 +171,6 @@ public class AppGraphicalController extends AppController{
         return modePaiement;
     }
 
-    /**
-     * @return -> la valeur des taxes appliquées ou -1 si invalide
-     */
-    private double getMontantTaxes() {
-        return Facture.verificationTotalSansTaxes(taxes.textProperty().getValue());
-    }
-
-    private void afficherMontantTotal() {
-        montantTotal.textProperty().setValue("");
-    }
-
-    //private void setMontantTotal() {
-    //    String montantString;
-    //    Double montantDouble;
-    //    montantDouble = Double.valueOf(getMontantSansTaxes() + getTaxes());
-    //    montantString = String.valueOf(montantDouble);
-//
-    //    this.montantTotal.setText(montantString);
-//
-    //    // montantTotal.setOnKeyPressed(keyEvent -> this.montantTotal.setText(montantString));
-    //}
-    //private boolean textRempliPourMontantTotal(){
-    //    boolean taxesRempli = false;
-    //    boolean nomAcheteurRempli = false;
-    //    boolean montantSansTaxesRempli = false;
-//
-    //    if (getNomAcheteur() != null){
-    //        nomAcheteurRempli = true;
-    //    }
-    //    if (getTaxes() != null){
-    //        taxesRempli = true;
-    //    }
-    //    if (getMontantSansTaxes() != null){
-    //        montantSansTaxesRempli = true;
-    //    }
-//
-    //    if (nomAcheteurRempli && taxesRempli && montantSansTaxesRempli == true){
-    //        return true;
-    //    }
-    //    return false;
-//
-    //}
 
     @FXML
     void afficherDons(double montant){
