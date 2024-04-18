@@ -87,13 +87,35 @@ public class AppGraphicalController extends AppController{
     private String getMontantDons() {
         return montantDons.textProperty().getValue();
     }
-    private void setMontantTotal(){
-        String montant;
-        montantTotal.textProperty().setValue(getTaxes() + getMontantSansTaxes());
-        montantTotal.textProperty().getValue();
+    private void setMontantTotal() {
+        String montantString;
+        Double montantDouble;
+        montantDouble = Double.valueOf(getMontantSansTaxes() + getTaxes());
+        montantString = String.valueOf(montantDouble);
 
-        double d = 100;
-        montant = "" + d;
-        montantTotal.setOnKeyPressed(keyEvent -> );
+        this.montantTotal.setText(montantString);
+
+        // montantTotal.setOnKeyPressed(keyEvent -> this.montantTotal.setText(montantString));
+    }
+    private boolean textRempliPourMontantTotal(){
+        boolean taxesRempli = false;
+        boolean nomAcheteurRempli = false;
+        boolean montantSansTaxesRempli = false;
+
+        if (getNomAcheteur() != null){
+            nomAcheteurRempli = true;
+        }
+        if (getTaxes() != null){
+            taxesRempli = true;
+        }
+        if (getMontantSansTaxes() != null){
+            montantSansTaxesRempli = true;
+        }
+
+        if (nomAcheteurRempli && taxesRempli && montantSansTaxesRempli == true){
+            return true;
+        }
+
+        return false;
     }
 }
