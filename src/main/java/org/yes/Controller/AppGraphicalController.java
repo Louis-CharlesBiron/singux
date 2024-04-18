@@ -36,6 +36,8 @@ public class AppGraphicalController {
     private Button creer;
     @FXML
     private Button annuler;
+    @FXML
+    private Text montantTotal;
 
 
 
@@ -97,5 +99,12 @@ public class AppGraphicalController {
 
     private String getMontantDons() {
         return montantDons.textProperty().getValue();
+    }
+
+    private String setMontantTotal(){
+
+        montantTotal.textProperty().setValue(getEcotaxe() + getTps() + getTvq() + getMontantSansTaxes());
+        return montantTotal.textProperty().getValue();
+
     }
 }
