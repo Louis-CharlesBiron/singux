@@ -109,6 +109,10 @@ public class AppGraphicalController extends AppController{
         setMontantSansTaxes("");
         setModePaiement("");
         afficherMontantTotal();
+        erreurNomAcheteur.textProperty().setValue("");
+        erreurModePaiement.textProperty().setValue("");
+        erreurMontantSansTaxes.textProperty().setValue("");
+        erreurTaxes.textProperty().setValue("");
     }
     private void setNomAcheteur(String nom) {
         nomAcheteur.textProperty().setValue(nom);
