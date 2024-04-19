@@ -61,7 +61,7 @@ public class Facture {
 
 
     public static double verificationFormatArgent(String montant) {
-        return Pattern.compile("^[0-9]+[.][0-9]{2}$").matcher(montant).find() ? Double.parseDouble(montant) : -1;
+        return Pattern.compile("^[0-9]*[.][0-9]{2}$").matcher(montant).find() ? Double.parseDouble(montant) : -1;
     }
 
     @Override

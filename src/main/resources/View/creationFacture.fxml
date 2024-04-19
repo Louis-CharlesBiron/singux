@@ -69,6 +69,11 @@
                         <Font size="16.0" />
                      </font>
                   </RadioButton>
+                  <Text fill="RED" layoutX="8.0" layoutY="253.0" strokeType="OUTSIDE" strokeWidth="0.0" fx:id="erreurModePaiement" wrappingWidth="175.5">
+                     <font>
+                        <Font size="10.5" />
+                     </font>
+                  </Text>
                </children>
             </Pane>
             <Pane layoutX="416.0" layoutY="13.0" prefHeight="130.0" prefWidth="170.0" style="-fx-background-color: #dbfbcb;">
@@ -99,6 +104,21 @@
                   </Text>
                </children>
             </Pane>
+            <Text fill="RED" layoutX="231.0" layoutY="127.0" strokeType="OUTSIDE" strokeWidth="0.0" fx:id="erreurNomAcheteur" wrappingWidth="175.5">
+               <font>
+                  <Font size="10.5" />
+               </font>
+            </Text>
+            <Text fill="RED" layoutX="225.0" layoutY="201.0" strokeType="OUTSIDE" strokeWidth="0.0" fx:id="erreurMontantSansTaxes" wrappingWidth="175.5">
+               <font>
+                  <Font size="10.5" />
+               </font>
+            </Text>
+            <Text fill="RED" layoutX="229.0" layoutY="280.0" strokeType="OUTSIDE" strokeWidth="0.0" fx:id="erreurTaxes" wrappingWidth="175.5">
+               <font>
+                  <Font size="10.5" />
+               </font>
+            </Text>
          </children>
       </AnchorPane>
    </children>
