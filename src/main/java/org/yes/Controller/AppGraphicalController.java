@@ -99,7 +99,7 @@ public class AppGraphicalController extends AppController{
     private void afficherMontantTotal() {
             montantTotal.textProperty().setValue(
                     !verificationChamps().contains("montantTaxes") && !verificationChamps().contains("montantSansTaxes") ?
-                            (getMontantSansTaxes()+getMontantTaxes())+"$"
+                            decfor.format(getMontantSansTaxes()+getMontantTaxes())+"$"
                             : "inconnu"
             );
     }
