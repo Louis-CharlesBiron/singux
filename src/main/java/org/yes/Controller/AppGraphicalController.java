@@ -48,6 +48,7 @@ public class AppGraphicalController extends AppController{
     @FXML
     private void initialize() {
         // afficher total
+
         montantSansTaxes.setOnKeyReleased(event -> afficherMontantTotal());
         taxes.setOnKeyReleased(event -> afficherMontantTotal());
 
@@ -104,8 +105,8 @@ public class AppGraphicalController extends AppController{
 
     private void rafraichirPage() {
         setNomAcheteur("");
-        setMontantTaxes("");
-        setMontantSansTaxes("");
+        setMontantTaxes("0.00");
+        setMontantSansTaxes("0.00");
         setModePaiement("");
         afficherMontantTotal();
     }

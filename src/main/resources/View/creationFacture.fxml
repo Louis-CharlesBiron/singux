@@ -32,12 +32,12 @@
                <font>
                   <Font size="14.0" />
                </font></Label>
-            <TextField fx:id="montantSansTaxes" layoutX="278.0" layoutY="160.0" prefHeight="26.0" prefWidth="50.0" promptText="0.00$" />
+            <TextField fx:id="montantSansTaxes" layoutX="278.0" layoutY="160.0" prefHeight="26.0" prefWidth="50.0" promptText="0.00$" text="0.00"/>
             <Label layoutX="244.0" layoutY="135.0" text="Montant sans taxes" textFill="#dbfbcb">
                <font>
                   <Font size="14.0" />
                </font></Label>
-            <TextField fx:id="taxes" layoutX="275.0" layoutY="242.0" prefHeight="25.0" prefWidth="50.0" promptText="0.00$" />
+            <TextField fx:id="taxes" layoutX="275.0" layoutY="242.0" prefHeight="25.0" prefWidth="50.0" promptText="0.00$" text="0.00"/>
             <Label layoutX="245.0" layoutY="203.0" prefHeight="36.0" prefWidth="120.0" text="Montant des taxes" textFill="#dbfbcb">
                <font>
                   <Font size="14.0" />
