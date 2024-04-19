@@ -21,6 +21,8 @@ public class AppGraphicalController extends AppController{
 
     FacturesFactory facturesFactory = new FacturesFactory();
     Dons dons = new Dons();
+    private static final DecimalFormat decfor = new DecimalFormat("0.00");
+
     @FXML
     public Text montantDons;
     @FXML
@@ -41,7 +43,14 @@ public class AppGraphicalController extends AppController{
     private Button rafraichir;
     @FXML
     private Text montantTotal;
-    private static final DecimalFormat decfor = new DecimalFormat("0.00");
+    @FXML
+    private Text erreurModePaiement;
+    @FXML
+    private Text erreurNomAcheteur;
+    @FXML
+    private Text erreurMontantSansTaxes;
+    @FXML
+    private Text erreurTaxes;
 
 
 
@@ -60,19 +69,11 @@ public class AppGraphicalController extends AppController{
             ModePaiements modePaiement = getModePaiement();
             String erreurs = verificationChamps();
 
-            if (erreurs.contains("nom")) {
-                System.out.println("display erreur nomAcheteur invalide"); // TODO
-            }
-            if (erreurs.contains("modePaiement")) {
-                System.out.println("display erreur modePaiement invalide"); // TODO
-            }
-            if (erreurs.contains("montantSansTaxes")) {
-                System.out.println("display erreur montantSansTaxes invalide"); // TODO
-            }
-            if (erreurs.contains("montantTaxes")) {
-                System.out.println("display erreur taxes invalide"); // TODO
-            }
-
+            // afficher les erreurs
+            erreurNomAcheteur.textProperty().setValue(erreurs.contains("nom") ? "Le nom de l'acheteur est invalide" : "");
+            erreurModePaiement.textProperty().setValue(erreurs.contains("modePaiement") ? "Le mode de paiement est invalide" : "");
+            erreurMontantSansTaxes.textProperty().setValue(erreurs.contains("montantSansTaxes") ? "Le montant sans taxes est invalide" : "");
+            erreurTaxes.textProperty().setValue(erreurs.contains("montantTaxes") ? "Le montant des taxes est invalide" : "");
 
             if (erreurs == "") {
                 Facture facture = facturesFactory.build(nomAcheteur, montantSansTaxes, modePaiement, taxes); // création d'une facture

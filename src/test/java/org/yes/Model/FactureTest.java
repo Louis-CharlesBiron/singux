@@ -1,27 +1,18 @@
 package org.yes.Model;
 import static org.junit.jupiter.api.Assertions.*;
-
-import org.junit.Assert;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-import javax.swing.*;
-// en francais
-// nom var significatif
-// séparation acteur, action et assertion
-// etantDonneMontantSansTaxe_quand_alors
-//
-
 class FactureTest {
 
-
+    FacturesFactory facturesFactory = new FacturesFactory();
     Facture facture1;
 
     @BeforeEach
     void setUp() {
-        //facture1 = new Facture();
+        facture1 = facturesFactory.build("nomRandom", 0.00, ModePaiements.ARGENT, 0.00);
     }
 
     @ParameterizedTest
