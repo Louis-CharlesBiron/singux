@@ -92,7 +92,7 @@
                         <Font size="15.0" />
                      </font>
                   </Text>
-                  <Text fx:id="montantTotal" layoutX="62.0" layoutY="86.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0,00$">
+                  <Text fx:id="montantTotal" layoutX="62.0" layoutY="86.0" strokeType="OUTSIDE" strokeWidth="0.0" text="inconnu">
                      <font>
                         <Font size="19.0" />
                      </font>

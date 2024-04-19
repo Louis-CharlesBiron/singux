@@ -1,6 +1,5 @@
 package org.yes.Controller;
 
-
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.RadioButton;
@@ -10,6 +9,8 @@ import org.yes.Model.Dons;
 import org.yes.Model.Facture;
 import org.yes.Model.FacturesFactory;
 import org.yes.Model.ModePaiements;
+
+import java.text.DecimalFormat;
 
 /**
  * @Author Maek Lorman
@@ -40,63 +41,74 @@ public class AppGraphicalController extends AppController{
     private Button rafraichir;
     @FXML
     private Text montantTotal;
+    private static final DecimalFormat decfor = new DecimalFormat("0.00");
 
 
 
     @FXML
     private void initialize() {
+        // afficher total
+        montantSansTaxes.setOnKeyReleased(event -> afficherMontantTotal());
+        taxes.setOnKeyReleased(event -> afficherMontantTotal());
 
-        nomAcheteur.setOnKeyPressed(event -> {});
-        montantSansTaxes.setOnKeyPressed(event -> {});
-        taxes.setOnKeyPressed(event -> {});
-        argent.setOnMouseClicked(event -> {});
-        debit.setOnMouseClicked(event -> {});
-        credit.setOnMouseClicked(event -> {});
-
-
-        // boutton creer facture
+        // bouton creer facture
         creer.setOnMouseClicked(event->{
             String nomAcheteur = getNomAcheteur();
             double montantSansTaxes = getMontantSansTaxes();
             double taxes = getMontantTaxes();
             ModePaiements modePaiement = getModePaiement();
+            String erreurs = verificationChamps();
 
-                    System.out.println(nomAcheteur);// TODELETE
-                    System.out.println(montantSansTaxes);// TODELETE
-                    System.out.println(taxes);// TODELETE
-                    System.out.println(modePaiement);// TODELETE
-                    System.out.println(dons.getTotalDons());// TODELETE
-
-            if (nomAcheteur == null) {
-                System.out.println("display erreur nomAcheteur invalide");
+            if (erreurs.contains("nom")) {
+                System.out.println("display erreur nomAcheteur invalide"); // TODO
             }
-            if (modePaiement == null) {
-                System.out.println("display erreur modePaiement invalide");
+            if (erreurs.contains("modePaiement")) {
+                System.out.println("display erreur modePaiement invalide"); // TODO
             }
-            if (montantSansTaxes == -1) {
-                System.out.println("display erreur montantSansTaxes invalide");
+            if (erreurs.contains("montantSansTaxes")) {
+                System.out.println("display erreur montantSansTaxes invalide"); // TODO
             }
-            if (taxes == -1) {
-                System.out.println("display erreur taxes invalide");
-
+            if (erreurs.contains("montantTaxes")) {
+                System.out.println("display erreur taxes invalide"); // TODO
             }
 
-            if (nomAcheteur != null && modePaiement != null && montantSansTaxes != -1 && taxes != -1) {
-                facturesFactory.build(nomAcheteur, montantSansTaxes, modePaiement, taxes); // création d'une facture
+
+            if (erreurs == "") {
+                Facture facture = facturesFactory.build(nomAcheteur, montantSansTaxes, modePaiement, taxes); // création d'une facture
                 afficherDons(dons.ajouterDons(montantSansTaxes+taxes, modePaiement)); // ajout et affichage des dons
+                rafraichirPage();
+                System.out.println("Nouvelle Facture Créée: "+facture.toString());
             }
         });
 
         // réinitialise tous les champs
-        rafraichir.setOnMouseClicked(event -> {
-            setNomAcheteur("");
-            setMontantTaxes("");
-            setMontantSansTaxes("");
-            setModePaiement("");
-        });
+        rafraichir.setOnMouseClicked(event -> rafraichirPage());
     }
 
+    private String verificationChamps() {
+        String erreurs = "";
+        if (getNomAcheteur() == null) erreurs += "nomAcheteur";
+        if (getMontantTaxes() == -1) erreurs += "montantTaxes";
+        if (getMontantSansTaxes() == -1) erreurs += "montantSansTaxes";
+        if (getModePaiement() == null) erreurs += "modePaiement";
+        return erreurs;
+    }
 
+    private void afficherMontantTotal() {
+            montantTotal.textProperty().setValue(
+                    !verificationChamps().contains("montantTaxes") && !verificationChamps().contains("montantSansTaxes") ?
+                            (getMontantSansTaxes()+getMontantTaxes())+"$"
+                            : "inconnu"
+            );
+    }
+
+    private void rafraichirPage() {
+        setNomAcheteur("");
+        setMontantTaxes("");
+        setMontantSansTaxes("");
+        setModePaiement("");
+        afficherMontantTotal();
+    }
     private void setNomAcheteur(String nom) {
         nomAcheteur.textProperty().setValue(nom);
     }
@@ -132,7 +144,14 @@ public class AppGraphicalController extends AppController{
      * @return -> le montant de l'achat sans les taxes et dons ou -1 si invalide
      */
     private double getMontantSansTaxes() {
-        return Facture.verificationTotalSansTaxes(montantSansTaxes.textProperty().getValue());
+        return Facture.verificationFormatArgent(montantSansTaxes.textProperty().getValue());
+    }
+
+    /**
+     * @return -> la valeur des taxes appliquées ou -1 si invalide
+     */
+    private double getMontantTaxes() {
+        return Facture.verificationFormatArgent(taxes.textProperty().getValue());
     }
 
     /**
@@ -148,51 +167,8 @@ public class AppGraphicalController extends AppController{
         return modePaiement;
     }
 
-    /**
-     * @return -> la valeur des taxes appliquées ou -1 si invalide
-     */
-    private double getMontantTaxes() {
-        return Facture.verificationTotalSansTaxes(taxes.textProperty().getValue());
-    }
 
-    private void afficherMontantTotal() {
-        montantTotal.textProperty().setValue("");
-    }
-
-    //private void setMontantTotal() {
-    //    String montantString;
-    //    Double montantDouble;
-    //    montantDouble = Double.valueOf(getMontantSansTaxes() + getTaxes());
-    //    montantString = String.valueOf(montantDouble);
-//
-    //    this.montantTotal.setText(montantString);
-//
-    //    // montantTotal.setOnKeyPressed(keyEvent -> this.montantTotal.setText(montantString));
-    //}
-    //private boolean textRempliPourMontantTotal(){
-    //    boolean taxesRempli = false;
-    //    boolean nomAcheteurRempli = false;
-    //    boolean montantSansTaxesRempli = false;
-//
-    //    if (getNomAcheteur() != null){
-    //        nomAcheteurRempli = true;
-    //    }
-    //    if (getTaxes() != null){
-    //        taxesRempli = true;
-    //    }
-    //    if (getMontantSansTaxes() != null){
-    //        montantSansTaxesRempli = true;
-    //    }
-//
-    //    if (nomAcheteurRempli && taxesRempli && montantSansTaxesRempli == true){
-    //        return true;
-    //    }
-    //    return false;
-//
-    //}
-
-    @FXML
-    void afficherDons(double montant){
-        montantDons.setText("Total: " + montant + "$");
+    private void afficherDons(double montant) {
+        montantDons.setText("Total: " + decfor.format(montant) + "$");
     }
 }

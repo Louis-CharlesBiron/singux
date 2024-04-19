@@ -28,8 +28,8 @@ public class Facture {
     }
 
     public void setTotalSansTaxes(String totalSansTaxes) {
-        double valeurSansTaxes = verificationTaxes(totalSansTaxes);
-        if (valeurSansTaxes != -1) this.totalSansTaxes = verificationTaxes(totalSansTaxes);
+        double valeurSansTaxes = verificationFormatArgent(totalSansTaxes);
+        if (valeurSansTaxes != -1) this.totalSansTaxes = valeurSansTaxes;
         else throw new IllegalArgumentException("Format: 'montant sans taxes' invalide");
     }
 
@@ -38,8 +38,8 @@ public class Facture {
     }
 
     public void setTaxes(String montantTaxes) {
-        double valeurTaxes = verificationTaxes(montantTaxes);
-        if (valeurTaxes != -1) this.montantTaxes = verificationTaxes(montantTaxes);
+        double valeurTaxes = verificationFormatArgent(montantTaxes);
+        if (valeurTaxes != -1) this.montantTaxes = valeurTaxes;
         else throw new IllegalArgumentException("Format: 'taxes' invalide");
     }
 
@@ -59,11 +59,18 @@ public class Facture {
         return montantTaxes;
     }
 
-    public static double verificationTotalSansTaxes(String montantSansTaxes) {
-        return Pattern.compile("^[0-9]+[.][0-9]{2}$").matcher(montantSansTaxes).find() ? Double.parseDouble(montantSansTaxes) : -1;
+
+    public static double verificationFormatArgent(String montant) {
+        return Pattern.compile("^[0-9]+[.][0-9]{2}$").matcher(montant).find() ? Double.parseDouble(montant) : -1;
     }
 
-    public static double verificationTaxes(String montantTaxes) {
-        return Pattern.compile("^[0-9]+[.][0-9]{2}$").matcher(montantTaxes).find() ? Double.parseDouble(montantTaxes) : -1;
+    @Override
+    public String toString() {
+        return "Facture{" +
+                "nomClient='" + nomClient + '\'' +
+                ", totalSansTaxes=" + totalSansTaxes +
+                ", modePaiement=" + modePaiement +
+                ", montantTaxes=" + montantTaxes +
+                '}';
     }
 }
