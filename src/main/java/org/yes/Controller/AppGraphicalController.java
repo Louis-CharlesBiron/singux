@@ -3,6 +3,7 @@ package org.yes.Controller;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.RadioButton;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import org.yes.Model.Dons;
@@ -11,6 +12,10 @@ import org.yes.Model.FacturesFactory;
 import org.yes.Model.ModePaiements;
 
 import java.text.DecimalFormat;
+import java.util.*;
+import java.util.regex.Pattern;
+
+import static java.util.Map.entry;
 
 /**
  * @Author Maek Lorman
@@ -51,13 +56,45 @@ public class AppGraphicalController extends AppController{
     private Text erreurMontantSansTaxes;
     @FXML
     private Text erreurTaxes;
+    @FXML
+    public TextField aidePlz;
+    @FXML
+    public TextArea aideDerien;
+
+
+    private static Map<String, String> documentation = Map.ofEntries(// mots clés : texte de documentation envoyé au comptable
+            entry("comment entrer un mode de paiement wtf hamburger argent cash money clams dabloons fric bread pain currency $$$$$$$$$$ happy contant content credit crédit débit debit", "À l'aide de votre dispositif de pointage virtuel, appuier sur le bouton principal présent (probablement du côté gauche) de ce dispositif vis-à-vis l'une des trois case à cochée dans la section 'Mode de Paiement' (ne pas appuier sur le X rouge dans ce cas) (voir documentation de la souris)"),
+            entry("comment entrer le nom du client jar man f*ck off j'arrive pas", "Dans la section 'Création d'une facture' > 'Nom de l'acheteur' entrer le nom de l'acheteur (doit contenir uniquement des lettres)"),
+            entry("comment créer creer une facture creation popcorn félix blanchette je suis tanné omg c'est full long faire la doc", "Dans la section 'Création d'une facture' > tout en bas, appuier sur le bouton 'Créer', si tout les champs sont remplis, la facture se créera sans soucis"),
+            entry("comment rafraichir l'application les champs trampoline tuer meurtrir données donnees", "Dans la section 'Création d'une facture' > tout en bas, appuier sur le bouton 'Rafraichir', cela videra tous les champs"),
+            entry("comment quitter fermer exploser s'expulser détruire vendaliser manger immédiatement a l'aide je suis pris coincé pogner exide vim", "Appuier sur le 'X' rouge probablement en haut à droite, si vous êtes en mode plein écran, appuier sur la touche d'échapement de votre clavier (voir documentation du clavier pour l'emplacement)"),
+            entry("comment utiliser section aide", "Voilà")
+    );
 
 
 
     @FXML
     private void initialize() {
-        // afficher total
 
+        //section aide
+        aidePlz.setOnKeyReleased(event -> {
+            String[] question = aidePlz.textProperty().getValue().split(" ");
+            int question_length = aidePlz.textProperty().getValue()=="" ? 0 : question.length;
+            Map<String, Integer> resultats = new HashMap<>();
+
+            documentation.keySet().forEach(keywords->{// détermination de la valeur
+                int valeur=0;
+                for (int i = 0; i < question_length; i++) valeur = keywords.contains(question[i]) ? ++valeur : --valeur;
+                resultats.put(keywords, valeur);
+            });
+
+
+            // affichage
+            String retVal = resultats.entrySet().stream().sorted((v1, v2)->v2.getValue().compareTo(v1.getValue())).filter(x->x.getValue()>0).map(m->m.getKey()).reduce("", (a, b)-> a + documentation.get(b) + "\n\n");
+            aideDerien.textProperty().setValue((retVal == "" || question_length == 0) ? "Aucun résultat." : retVal);
+        });
+
+        // afficher total
         montantSansTaxes.setOnKeyReleased(event -> afficherMontantTotal());
         taxes.setOnKeyReleased(event -> afficherMontantTotal());
 
@@ -143,7 +180,7 @@ public class AppGraphicalController extends AppController{
      */
     private String getNomAcheteur() {
         String nom = nomAcheteur.textProperty().getValue();
-        return nom.matches("^[a-zA-ZÀ-ö -]+$") ? nom : null;
+        return nom.matches("^[a-zA-ZÀ-ö -]+$") && nom.length() <= 75 ? nom : null;
     }
 
     /**
