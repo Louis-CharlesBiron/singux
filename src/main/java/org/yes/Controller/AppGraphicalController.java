@@ -63,9 +63,9 @@ public class AppGraphicalController extends AppController{
 
 
     private static Map<String, String> documentation = Map.ofEntries(// mots clés : texte de documentation envoyé au comptable
-            entry("comment entrer un mode de paiement wtf hamburger argent cash money clams dabloons fric bread pain currency $$$$$$$$$$ happy contant content credit crédit débit debit", "À l'aide de votre dispositif de pointage virtuel, appuier sur le bouton principal présent (probablement du côté gauche) de ce dispositif vis-à-vis l'une des trois case à cochée dans la section 'Mode de Paiement' (ne pas appuier sur le X rouge dans ce cas) (voir documentation de la souris)"),
+            entry("comment entrer un mode de paiement hamburger argent cash money clams dabloons fric bread pain currency $$$$$$$$$$ happy contant content credit crédit débit debit", "À l'aide de votre dispositif de pointage virtuel, appuier sur le bouton principal présent (probablement du côté gauche) de ce dispositif vis-à-vis l'une des trois case à cochée dans la section 'Mode de Paiement' (ne pas appuier sur le X rouge dans ce cas) (voir documentation de la souris)"),
             entry("comment entrer le nom du client jar man j'arrive pas", "Dans la section 'Création d'une facture' > 'Nom de l'acheteur' entrer le nom de l'acheteur (doit contenir uniquement des lettres)"),
-            entry("comment créer creer une facture creation popcorn félix blanchette je suis tanné omg c'est full long faire la doc ??????????????????????????????????????????????????????????", "Dans la section 'Création d'une facture' > tout en bas, appuier sur le bouton 'Créer', si tout les champs sont remplis, la facture se créera sans soucis"),
+            entry("comment créer creer une facture creation popcorn félix blanchette ??????????????????????", "Dans la section 'Création d'une facture' > tout en bas, appuier sur le bouton 'Créer', si tout les champs sont remplis, la facture se créera sans soucis"),
             entry("comment rafraichir l'application les champs trampoline tuer meurtrir données donnees", "Dans la section 'Création d'une facture' > tout en bas, appuier sur le bouton 'Rafraichir', cela videra tous les champs"),
             entry("comment quitter fermer exploser s'expulser détruire vendaliser manger immédiatement a l'aide je suis pris coincé pogner exil", "Appuier sur le 'X' rouge probablement en haut à droite, si vous êtes en mode plein écran, appuier sur la touche d'échapement de votre clavier (voir documentation du clavier pour l'emplacement)"),
             entry("je ne sais pas pourquoi utiliser la section aide", "Vous pouvez utiliser la section d'aide pour obtnir des informations sur l'application")
@@ -78,7 +78,7 @@ public class AppGraphicalController extends AppController{
 
         //section aide
         aidePlz.setOnKeyReleased(event -> {
-            aideDerien.textProperty().setValue(getDocumentation(aidePlz.textProperty().getValue()));
+            aideDerien.textProperty().setValue(demanderDocumentation(aidePlz.textProperty().getValue()));
         });
 
         // afficher total
@@ -111,7 +111,7 @@ public class AppGraphicalController extends AppController{
         rafraichir.setOnMouseClicked(event -> rafraichirPage());
     }
 
-    public String getDocumentation(String question) {
+    public String demanderDocumentation(String question) {
         String[] question_split = question.toLowerCase().split(" ");
         int question_length = question=="" ? 0 : question_split.length;
         Map<String, Integer> resultats = new HashMap<>();
